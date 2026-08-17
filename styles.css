@@ -1,4 +1,427 @@
+/* =========================================================
+   MARVEL TIMELINE V2 — LANDING PAGE FOUNDATION
+   ========================================================= */
+
+:root {
+    --background: #101116;
+    --background-dark: #08090d;
+    --panel: #171920;
+    --panel-light: #20232c;
+    --text: #f5f1e8;
+    --muted: #b9b6b0;
+    --accent: #e3262e;
+    --accent-dark: #a9141b;
+    --gold: #f1c75b;
+    --border: rgba(255, 255, 255, 0.14);
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: var(--text);
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(227, 38, 46, 0.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            var(--background-dark),
+            var(--background)
+        );
+
+    position: relative;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   COMIC-BOOK BACKGROUND
+   ========================================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background-image:
+        radial-gradient(
+            rgba(255, 255, 255, 0.08) 1px,
+            transparent 1px
+        );
+
+    background-size: 8px 8px;
+
+    opacity: 0.25;
+    pointer-events: none;
+    z-index: -2;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 900px;
+    height: 900px;
+
+    top: -350px;
+    right: -300px;
+
+    background:
+        repeating-conic-gradient(
+            from 0deg,
+            rgba(227, 38, 46, 0.08) 0deg 8deg,
+            transparent 8deg 16deg
+        );
+
+    border-radius: 50%;
+
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header {
+    width: 100%;
+    padding: 24px 5vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--border);
+
+    background: rgba(8, 9, 13, 0.82);
+
+    backdrop-filter: blur(10px);
+}
+
+.site-logo {
+    color: var(--text);
+    text-decoration: none;
+
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+
+    transition: color 0.2s ease;
+}
+
+.site-logo:hover {
+    color: var(--accent);
+}
+
+.admin-link {
+    color: var(--muted);
+    text-decoration: none;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    padding: 8px 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 999px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.admin-link:hover {
+    color: var(--text);
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+main {
+    width: min(1100px, 90%);
+    margin: 0 auto;
+    padding: 80px 0 100px;
+}
+
+
+/* =========================================================
+   LANDING INTRO
+   ========================================================= */
+
+.landing-intro {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.landing-intro h1 {
+    margin: 0;
+
+    font-size: clamp(2.4rem, 6vw, 5.5rem);
+    line-height: 0.95;
+
+    font-weight: 950;
+    letter-spacing: -0.045em;
+    text-transform: uppercase;
+
+    text-shadow:
+        4px 4px 0 rgba(227, 38, 46, 0.85);
+}
+
+.intro-text {
+    max-width: 720px;
+    margin: 30px auto 0;
+
+    color: var(--muted);
+
+    font-size: 1.08rem;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   SECTION HEADINGS
+   ========================================================= */
+
+.order-selection,
+.destination-section {
+    margin-top: 85px;
+}
+
+.order-selection h2,
+.destination-section h2 {
+    margin: 0 0 28px;
+
+    text-align: center;
+
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+
+/* =========================================================
+   ORDER OPTIONS
+   ========================================================= */
+
+.order-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.order-card {
+    min-height: 180px;
+
+    padding: 32px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    text-align: left;
+
+    color: var(--text);
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--accent);
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.28);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.order-card:hover {
+    transform: translateY(-5px);
+    background: var(--panel-light);
+    border-color: var(--accent);
+}
+
+.order-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+
+.order-title {
+    font-size: 1.45rem;
+    font-weight: 900;
+}
+
+.order-description {
+    margin-top: 8px;
+
+    color: var(--muted);
+
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   DESTINATION GRID
+   ========================================================= */
+
+.destination-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+.destination-card {
+    min-height: 190px;
+
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    color: var(--text);
+    background: rgba(23, 25, 32, 0.92);
+
+    border: 1px solid var(--border);
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.24);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.destination-card:hover {
+    transform: translateY(-5px);
+
+    background: var(--panel-light);
+    border-color: rgba(241, 199, 91, 0.7);
+}
+
+.destination-icon {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.destination-title {
+    font-size: 1.35rem;
+    font-weight: 900;
+}
+
+.destination-description {
+    margin-top: 8px;
+
+    color: var(--muted);
+
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+    padding: 30px 20px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    border-top: 1px solid var(--border);
+
+    background: rgba(8, 9, 13, 0.75);
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .site-header {
+        padding: 18px 5%;
+    }
+
+    main {
+        width: 90%;
+        padding: 55px 0 70px;
+    }
+
+    .landing-intro h1 {
+        font-size: clamp(2.2rem, 12vw, 4rem);
+    }
+
+    .intro-text {
+        font-size: 1rem;
+    }
+
+    .order-selection,
+    .destination-section {
+        margin-top: 60px;
+    }
+
+    .order-options,
+    .destination-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .order-card,
+    .destination-card {
+        min-height: 150px;
+    }
+
+    .order-card {
+        padding: 26px;
+    }
+
+    .destination-card {
+        padding: 26px;
+    }
 }
