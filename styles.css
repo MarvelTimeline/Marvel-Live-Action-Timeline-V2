@@ -36,16 +36,16 @@ body {
 
     color: var(--text);
     background:
-        radial-gradient(
-            circle at 50% 20%,
-            rgba(227, 38, 46, 0.12),
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            var(--background-dark),
-            var(--background)
-        );
+    radial-gradient(
+        circle at 50% 18%,
+        rgba(120, 20, 25, 0.10),
+        transparent 38%
+    ),
+    linear-gradient(
+        135deg,
+        #07080b,
+        #111218
+    );
 
     position: relative;
     overflow-x: hidden;
