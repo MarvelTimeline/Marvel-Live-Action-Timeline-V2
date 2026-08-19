@@ -384,6 +384,24 @@ main {
    MOBILE
    ========================================================= */
 
+/* TIMELINE POSTERS */
+.timeline-poster {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    margin: 20px auto 0;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.timeline-entry {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 25px;
+    align-items: start;
+}
+
 @media (max-width: 700px) {
 
     .site-header {
@@ -425,22 +443,4 @@ main {
     .destination-card {
         padding: 26px;
     }
-}
-
-/* TIMELINE POSTERS */
-.timeline-poster {
-    display: block;
-    width: 100%;
-    max-width: 340px;
-    height: auto;
-    margin: 20px auto 0;
-    border-radius: 6px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-}
-
-.timeline-entry {
-    display: grid;
-    grid-template-columns: 340px 1fr;
-    gap: 25px;
-    align-items: start;
 }
