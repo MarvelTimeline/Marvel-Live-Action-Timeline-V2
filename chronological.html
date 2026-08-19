@@ -1233,29 +1233,70 @@
 
 <script>
 fetch('timeline.json')
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Could not load timeline.json');
+        }
+
+        return response.json();
+    })
     .then(data => {
-        const testBox = document.createElement('div');
+        const timeline = document.querySelector('.timeline-content');
 
-        testBox.innerHTML = `
-            <h2>JSON TEST</h2>
-            <p>${data[0].number} — ${data[0].title}</p>
-            <p>${data[1].number} — ${data[1].title}</p>
-        `;
+        if (!timeline) {
+            throw new Error('Timeline content section not found');
+        }
 
-        document.body.appendChild(testBox);
+        timeline.innerHTML = '';
+
+        data.forEach(item => {
+            const article = document.createElement('article');
+            article.className = 'timeline-entry';
+
+            const number = document.createElement('span');
+            number.className = 'timeline-number';
+            number.textContent = String(item.number).padStart(2, '0');
+
+            const info = document.createElement('div');
+            info.className = 'timeline-info';
+
+            const title = document.createElement('h2');
+            title.textContent = item.title;
+
+            const description = document.createElement('p');
+            description.textContent =
+                `Chronologically ${item.number}${getOrdinal(item.number)} in the Marvel live-action timeline.`;
+
+            info.appendChild(title);
+            info.appendChild(description);
+
+            article.appendChild(number);
+            article.appendChild(info);
+
+            timeline.appendChild(article);
+        });
     })
     .catch(error => {
-        const errorBox = document.createElement('div');
-
-        errorBox.innerHTML = `
-            <h2>JSON TEST FAILED</h2>
-            <p>${error}</p>
-        `;
-
-        document.body.appendChild(errorBox);
+        console.error('Timeline loading failed:', error);
     });
-</script> 
+
+function getOrdinal(number) {
+    if (number % 100 >= 11 && number % 100 <= 13) {
+        return 'th';
+    }
+
+    switch (number % 10) {
+        case 1:
+            return 'st';
+        case 2:
+            return 'nd';
+        case 3:
+            return 'rd';
+        default:
+            return 'th';
+    }
+}
+</script>
     
 </body>
 </html>
