@@ -388,7 +388,7 @@ main {
 .timeline-poster {
     display: block;
     width: 100%;
-    max-width: 340px;
+    max-width: 300px;
     height: auto;
     margin: 20px auto 0;
     border-radius: 6px;
