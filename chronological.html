@@ -1257,13 +1257,13 @@ fetch('timeline.json')
             number.className = 'timeline-number';
             number.textContent = String(item.number).padStart(2, '0');
 
-            const info = document.createElement('div');
-            info.className = 'timeline-info';
+const content = document.createElement('div');
+content.className = 'timeline-info';
 
-            const title = document.createElement('h2');
-            title.textContent = item.title;
+const title = document.createElement('h2');
+title.textContent = item.title;
 
-            const set = document.createElement('p');
+const set = document.createElement('p');
 set.textContent = `Set: ${item.chronologicalYear}`;
 
 const release = document.createElement('p');
@@ -1275,26 +1275,41 @@ details.textContent = `${item.type} • ${item.universe} • ${item.earth}`;
 const rating = document.createElement('p');
 rating.textContent = `⭐ ${item.rating}/5`;
 
+const overviewToggle = document.createElement('button');
+overviewToggle.className = 'overview-toggle';
+overviewToggle.textContent = 'Overview ▾';
+
 const overview = document.createElement('p');
+overview.className = 'timeline-overview';
 overview.textContent = item.description;
+overview.hidden = true;
 
-info.appendChild(title);
-info.appendChild(set);
-info.appendChild(release);
-info.appendChild(details);
-info.appendChild(rating);
-info.appendChild(overview);
+overviewToggle.addEventListener('click', () => {
+    overview.hidden = !overview.hidden;
+    overviewToggle.textContent = overview.hidden
+        ? 'Overview ▾'
+        : 'Overview ▴';
+});
 
-            if (item.poster) {
-  const poster = document.createElement('img');
-  poster.src = item.poster;
-  poster.alt = `${item.title} poster`;
-  poster.className = 'timeline-poster';
-  article.appendChild(poster);
+content.appendChild(number);
+content.appendChild(title);
+content.appendChild(set);
+content.appendChild(release);
+content.appendChild(details);
+content.appendChild(rating);
+content.appendChild(overviewToggle);
+content.appendChild(overview);
+
+if (item.poster) {
+    const poster = document.createElement('img');
+    poster.src = item.poster;
+    poster.alt = `${item.title} poster`;
+    poster.className = 'timeline-poster';
+
+    article.appendChild(poster);
 }
 
-article.appendChild(number);
-article.appendChild(info);
+article.appendChild(content);
 
 timeline.appendChild(article);
         });
