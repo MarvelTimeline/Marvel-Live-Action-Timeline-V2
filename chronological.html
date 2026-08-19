@@ -1294,6 +1294,16 @@ set.textContent = `Set: ${item.chronologicalYear}`;
 const release = document.createElement('p');
 release.textContent = `Released: ${item.releaseYear}`;
 
+const flashbacks = document.createElement('p');
+if (item.flashbacks) {
+    flashbacks.textContent = `Flashbacks: ${item.flashbacks}`;
+}
+
+const flashForwards = document.createElement('p');
+if (item.flashForwards) {
+    flashForwards.textContent = `Flash-forwards: ${item.flashForwards}`;
+}
+            
 const details = document.createElement('p');
 details.textContent = `${item.type} • ${item.universe} • ${item.earth}`;
 
@@ -1320,6 +1330,12 @@ content.appendChild(number);
 content.appendChild(title);
 content.appendChild(set);
 content.appendChild(release);
+if (item.flashbacks) {
+    content.appendChild(flashbacks);
+}
+if (item.flashForwards) {
+    content.appendChild(flashForwards);
+}
 content.appendChild(details);
 content.appendChild(rating);
 content.appendChild(overviewToggle);
