@@ -1231,5 +1231,16 @@
 
     <script src="app.js"></script>
 
+<script>
+fetch('timeline.json')
+    .then(response => response.json())
+    .then(data => {
+        console.log('Timeline data loaded:', data);
+    })
+    .catch(error => {
+        console.error('Timeline data failed to load:', error);
+    });
+</script>    
+    
 </body>
 </html>
