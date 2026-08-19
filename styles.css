@@ -440,7 +440,7 @@ main {
 
 .timeline-entry {
     display: grid;
-    grid-template-columns: 50px 1fr 340px;
+    grid-template-columns: 140px 1fr 340px;
     gap: 25px;
     align-items: start;
 }
