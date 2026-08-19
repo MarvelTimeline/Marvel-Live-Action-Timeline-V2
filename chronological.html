@@ -1263,17 +1263,40 @@ fetch('timeline.json')
             const title = document.createElement('h2');
             title.textContent = item.title;
 
-            const description = document.createElement('p');
-            description.textContent =
-                `Chronologically ${item.number}${getOrdinal(item.number)} in the Marvel live-action timeline.`;
+            const set = document.createElement('p');
+set.textContent = `Set: ${item.chronologicalYear}`;
 
-            info.appendChild(title);
-            info.appendChild(description);
+const release = document.createElement('p');
+release.textContent = `Released: ${item.releaseYear}`;
 
-            article.appendChild(number);
-            article.appendChild(info);
+const details = document.createElement('p');
+details.textContent = `${item.type} • ${item.universe} • ${item.earth}`;
 
-            timeline.appendChild(article);
+const rating = document.createElement('p');
+rating.textContent = `⭐ ${item.rating}/5`;
+
+const overview = document.createElement('p');
+overview.textContent = item.description;
+
+info.appendChild(title);
+info.appendChild(set);
+info.appendChild(release);
+info.appendChild(details);
+info.appendChild(rating);
+info.appendChild(overview);
+
+            if (item.poster) {
+  const poster = document.createElement('img');
+  poster.src = item.poster;
+  poster.alt = `${item.title} poster`;
+  poster.className = 'timeline-poster';
+  article.appendChild(poster);
+}
+
+article.appendChild(number);
+article.appendChild(info);
+
+timeline.appendChild(article);
         });
     })
     .catch(error => {
