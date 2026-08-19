@@ -1235,12 +1235,27 @@
 fetch('timeline.json')
     .then(response => response.json())
     .then(data => {
-        console.log('Timeline data loaded:', data);
+        const testBox = document.createElement('div');
+
+        testBox.innerHTML = `
+            <h2>JSON TEST</h2>
+            <p>${data[0].number} — ${data[0].title}</p>
+            <p>${data[1].number} — ${data[1].title}</p>
+        `;
+
+        document.body.appendChild(testBox);
     })
     .catch(error => {
-        console.error('Timeline data failed to load:', error);
+        const errorBox = document.createElement('div');
+
+        errorBox.innerHTML = `
+            <h2>JSON TEST FAILED</h2>
+            <p>${error}</p>
+        `;
+
+        document.body.appendChild(errorBox);
     });
-</script>    
+</script> 
     
 </body>
 </html>
