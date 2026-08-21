@@ -403,6 +403,26 @@ main {
     width: 100%;
 }
 
+.overview-toggle {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 6px;
+    padding: 7px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.overview-toggle:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.overview-toggle:active {
+    transform: scale(0.97);
+}
+
 .timeline-entry .timeline-poster {
     grid-column: 1;
     grid-row: 1;
