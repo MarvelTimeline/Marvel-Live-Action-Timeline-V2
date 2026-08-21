@@ -397,7 +397,7 @@ main {
 
 .timeline-entry {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 40px 300px 1fr;
     gap: 25px;
     align-items: start;
 }
