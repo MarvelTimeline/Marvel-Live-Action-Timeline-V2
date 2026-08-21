@@ -232,5 +232,13 @@
   { "number": 133, "title": "Captain America: Brave New World" },
   { "number": 134, "title": "Thunderbolts*" },
   { "number": 135, "title": "Wonder Man" },
-  { "number": 136, "title": "Spider-Man: Brand New Day" }
+  {"number": 136, "title": "Spider-Man: Brand New Day",
+  "chronologicalYear": "2027",
+  "flashbacks": "Jean and Peter's individual pasts",
+  "releaseYear": 2026,
+  "type": "Film",
+  "universe": "MCU",
+  "earth": "Earth-616",
+  "rating": "Rating pending",
+  "description": "Follows Peter Parker as he begins a new chapter as Spider-Man, living alone and rebuilding his life after the sacrifice he made at the end of 'No Way Home'. Explores Peter's new reality where his friends, family, and everyone he knew no longer remember him, forcing him to redefine what being Spider-Man means without the support system he once had. Continues Peter's evolution from a young hero guided by mentors like Tony Stark into a more independent and experienced Spider-Man. Expands the street-level side of the MCU, returning Spider-Man to the grounded crime stories associated with his comic-book roots. Introduces Jean Grey into the MCU and explores themes of loneliness, responsibility, identity, and the cost of being a hero when nobody knows the person behind the mask."}
 ]
