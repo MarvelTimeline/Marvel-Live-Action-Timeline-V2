@@ -1277,14 +1277,8 @@ fetch('timeline.json')
             const article = document.createElement('article');
             article.className = 'timeline-entry';
 
-            const number = document.createElement('span');
-            number.className = 'timeline-number';
-            number.textContent = String(item.number).padStart(2, '0');
-
 const content = document.createElement('div');
-content.className = 'timeline-info';
-
-content.appendChild(number);            
+content.className = 'timeline-info';          
 
 const title = document.createElement('h2');
 title.textContent = item.title;
