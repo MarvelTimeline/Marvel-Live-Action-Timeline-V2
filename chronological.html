@@ -1276,7 +1276,6 @@ fetch('timeline.json')
         data.forEach(item => {
             const article = document.createElement('article');
             article.className = 'timeline-entry';
-            article.style.gridTemplateColumns = item.poster ? '50px 260px 1fr' : '50px' '1fr';
 
             const number = document.createElement('span');
             number.className = 'timeline-number';
