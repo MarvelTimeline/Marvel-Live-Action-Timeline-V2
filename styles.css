@@ -396,10 +396,7 @@ main {
 }
 
 .timeline-entry {
-    display: grid;
-    grid-template-columns: 300px minmax(0, 1fr);
-    gap: 25px;
-    align-items: start;
+    display: block;
     width: 100%;
 }
 
@@ -424,13 +421,15 @@ main {
 }
 
 .timeline-entry .timeline-poster {
-    grid-column: 1;
-    grid-row: 1;
+    display: block;
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    margin: 20px auto 30px;
 }
 
 .timeline-entry .timeline-info {
-    grid-column: 2;
-    grid-row: 1;
+    width: 100%;
 }
 
 @media (max-width: 700px) {
