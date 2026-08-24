@@ -403,6 +403,23 @@ main {
     width: 100%;
 }
 
+.timeline-title {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    margin: 0;
+}
+
+.timeline-entry .timeline-poster {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 0;
+}
+
+.timeline-entry .timeline-info {
+    grid-column: 2;
+    grid-row: 2;
+}
+
 .overview-toggle {
     background: transparent;
     color: white;
@@ -473,5 +490,31 @@ main {
 
     .destination-card {
         padding: 26px;
+    }
+
+       .timeline-entry {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .timeline-title {
+        order: 1;
+        width: 100%;
+        margin: 0;
+    }
+
+    .timeline-entry .timeline-poster {
+        order: 2;
+        width: 260px;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .timeline-entry .timeline-info {
+        order: 3;
+        width: 100%;
     }
 }
