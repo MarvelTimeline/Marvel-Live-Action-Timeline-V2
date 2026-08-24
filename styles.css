@@ -398,6 +398,7 @@ main {
 .timeline-entry {
     display: grid;
     grid-template-columns: 300px minmax(0, 1fr);
+    grid-template-rows: auto auto;
     gap: 25px;
     align-items: start;
     width: 100%;
