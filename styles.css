@@ -398,28 +398,20 @@ main {
 .timeline-entry {
     display: grid;
     grid-template-columns: 300px minmax(0, 1fr);
-    grid-template-rows: auto auto;
-    column-gap: 25px;
-    row-gap: 0;
+    gap: 25px;
     align-items: start;
     width: 100%;
 }
 
-.timeline-title {
-    grid-column: 2;
-    grid-row: 1;
-    margin: 0;
-}
-
 .timeline-entry .timeline-poster {
     grid-column: 1;
-    grid-row: 1 / span 2;
+    grid-row: 1;
     margin: 0;
 }
 
 .timeline-entry .timeline-info {
     grid-column: 2;
-    grid-row: 1 / span 2;
+    grid-row: 1;
 }
 
 .overview-toggle {
