@@ -1277,11 +1277,12 @@ fetch('timeline.json')
             const article = document.createElement('article');
             article.className = 'timeline-entry';
 
-const content = document.createElement('div');
-content.className = 'timeline-info';          
-
 const title = document.createElement('h2');
+title.className = 'timeline-title';
 title.textContent = item.title;
+
+const content = document.createElement('div');
+content.className = 'timeline-info';
 
 const set = document.createElement('p');
 set.textContent = `Set: ${item.chronologicalYear}`;
@@ -1298,7 +1299,7 @@ const flashForwards = document.createElement('p');
 if (item.flashForwards) {
     flashForwards.textContent = `Flash-forwards: ${item.flashForwards}`;
 }
-            
+
 const details = document.createElement('p');
 details.textContent = `${item.type} • ${item.universe} • ${item.earth}`;
 
@@ -1307,7 +1308,7 @@ rating.textContent = `⭐ ${item.rating}/5`;
 
 const overviewToggle = document.createElement('button');
 overviewToggle.className = 'overview-toggle';
-overviewToggle.textContent = 'Overview ▾';
+overviewToggle.textContent = 'Overview⌄';
 
 const overview = document.createElement('p');
 overview.className = 'timeline-overview';
@@ -1317,19 +1318,21 @@ overview.hidden = true;
 overviewToggle.addEventListener('click', () => {
     overview.hidden = !overview.hidden;
     overviewToggle.textContent = overview.hidden
-        ? 'Overview ▾'
-        : 'Overview ▴';
+        ? 'Overview⌄'
+        : 'Overview⌃';
 });
 
-content.appendChild(title);
 content.appendChild(set);
 content.appendChild(release);
+
 if (item.flashbacks) {
     content.appendChild(flashbacks);
 }
+
 if (item.flashForwards) {
     content.appendChild(flashForwards);
 }
+
 content.appendChild(details);
 content.appendChild(rating);
 content.appendChild(overviewToggle);
@@ -1341,7 +1344,10 @@ if (item.poster) {
     poster.alt = `${item.title} poster`;
     poster.className = 'timeline-poster';
 
+    article.appendChild(title);
     article.appendChild(poster);
+} else {
+    article.appendChild(title);
 }
 
 article.appendChild(content);
