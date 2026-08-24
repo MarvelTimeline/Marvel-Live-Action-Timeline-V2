@@ -162,7 +162,7 @@ body::after {
    ========================================================= */
 
 main {
-    width: min(1100px, 90%);
+    width: min(1450px, 90%);
     margin: 0 auto;
     padding: 80px 0 100px;
 }
