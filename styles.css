@@ -408,17 +408,19 @@ main {
     grid-column: 2;
     grid-row: 1;
     margin: 0;
+    align-self: start;
 }
 
 .timeline-entry .timeline-poster {
     grid-column: 1;
-    grid-row: 1 / span 2;
+    grid-row: 1;
     margin: 0;
 }
 
 .timeline-entry .timeline-info {
     grid-column: 2;
-    grid-row: 2;
+    grid-row: 1;
+    margin-top: 70px;
 }
 
 .overview-toggle {
