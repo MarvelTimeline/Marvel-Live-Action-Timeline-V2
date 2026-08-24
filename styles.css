@@ -398,15 +398,16 @@ main {
 .timeline-entry {
     display: grid;
     grid-template-columns: 300px minmax(0, 1fr);
-    gap: 25px;
+    column-gap: 80px;
     align-items: start;
     width: 100%;
+    margin-bottom: 60px;
 }
 
 .timeline-title {
     grid-column: 2;
     grid-row: 1;
-    margin: 0 0 0 0;
+    margin: 0;
 }
 
 .timeline-entry .timeline-poster {
@@ -417,8 +418,7 @@ main {
 
 .timeline-entry .timeline-info {
     grid-column: 2;
-    grid-row: 1;
-    margin: 0;
+    grid-row: 2;
 }
 
 .overview-toggle {
