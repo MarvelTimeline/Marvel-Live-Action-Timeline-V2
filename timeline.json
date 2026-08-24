@@ -142,6 +142,7 @@
   "universe": "Fox",
   "earth": "Earth-10005",
   "rating": "3.5",
+  "poster": "images/xm.avif"
   "description": "Introduces the world of mutants, where people born with extraordinary abilities are feared by society and forced to fight for acceptance. Follows Wolverine and Rogue as they become involved with Professor Charles Xavier's X-Men, a team dedicated to protecting both mutants and humans. Establishes the central conflict between Charles Xavier's dream of peaceful coexistence and Magneto's belief that mutants must defend themselves from humanity. Introduces X-Men characters, including Cyclops, Jean Grey, Storm, Mystique, and Magneto, creating the foundation for the entire X-Men film universe."},
   {"number": 16, "title": "Blade Two",
   "chronologicalYear": "2002",
@@ -150,6 +151,7 @@
   "universe": "New Line Cinema",
   "earth": "Earth-26320",
   "rating": "3",
+  "poster": "images/b2.jpg"
   "description": "Continues the story of Blade, the vampire hunter who must team up with his enemies when a new breed of terrifying creatures threatens both humans and vampires. Expands vampire mythology by introducing the Reapers, a powerful mutation that creates a threat unlike anything Blade has faced before. Forces Blade into an uneasy alliance with the vampire world, exploring the idea that even enemies may need to work together against a greater danger."},
   {"number": 17, "title": "Madame Web",
   "chronologicalYear": "Early 2000s",
@@ -159,6 +161,7 @@
   "universe": "Sony",
   "earth": "Earth-688",
   "rating": "4",
+  "poster": "images/mw.avif"
   "description": "Follows Cassandra Webb, a paramedic who develops the ability to see possible futures and must protect three young women who are connected to a Spider-Man-related prophecy. Adds background to the world surrounding Spider-related heroes, including early hints at how future figures could emerge. A different kind of superhero story that focuses on fate, destiny, and protecting the next generation rather than traditional superhero battles."},
   {"number": 18, "title": "Spider-Man",
   "chronologicalYear": "2002",
@@ -167,6 +170,7 @@
   "universe": "Sony",
   "earth": "Earth-96283",
   "rating": "5",
+  "poster": "images/sm.webp"
   "description": "Follows Peter Parker, a gifted but ordinary teenager who gains spider-like abilities after a genetically altered spider bite and must learn that great power comes with great responsibility. Explores Peter's transformation from an awkward outsider into Spider-Man, balancing his new abilities with school, relationships, and personal loss. Introduces characters including Mary Jane Watson, and Norman Osborn (Green Goblin). A film that helped redefine comic book movies, combining action, heart, and the emotional struggles that make Spider-Man one of Marvel's most relatable heroes."},
   {"number": 19, "title": "X2: X-Men United",
   "chronologicalYear": "2003",
@@ -176,6 +180,7 @@
   "universe": "Fox",
   "earth": "Earth-10005",
   "rating": "3",
+  "poster": "images/x2xmu.webp"
   "description": "Continues the story of the X-Men as tensions between humans and mutants escalate following the first film. Explores Wolverine's past further, revealing more about the Weapon X programme and the experiments that created him. Forces the X-Men and Magneto's Brotherhood to cooperate when a greater threat puts all mutants at risk."},
   {"number": 20, "title": "Daredevil",
   "chronologicalYear": "2003",
@@ -185,6 +190,7 @@
   "universe": "Fox",
   "earth": "Earth-701306",
   "rating": "3",
+  "poster": "images/dd.jpg"
   "description": "Follows Matt Murdock, a blind lawyer by day who uses his heightened senses to become Daredevil, a vigilante protecting Hell's Kitchen at night. Focuses on crime, corruption, and justice rather than world-ending threats. Shows Matt's struggle between his Catholic beliefs, his desire for justice, and the violent methods he uses as Daredevil. Introduces key characters including Wilson Fisk (Kingpin), Bullseye, and Elektra."},
   {"number": 21, "title": "Spider-Man Two",
   "chronologicalYear": "2004",
@@ -193,6 +199,7 @@
   "universe": "Sony",
   "earth": "Earth-96283",
   "rating": "5",
+  "poster": "images/sm2.jpg"
   "description": "Continues Peter Parker's journey as he struggles to balance his life as Spider-Man with his responsibilities, relationships, and personal sacrifices. Explores the emotional cost of being a hero, as Peter questions whether he can continue carrying the burden of protecting others. Introduces Dr. Otto Octavius (Doctor Octopus), a scientist whose tragic transformation creates one of Spider-Man's biggest villains. Expands Peter's world by developing his relationships with Mary Jane, Aunt May, and the people affected by his choices as a hero."},
   {"number": 22, "title": "Blade Trinity",
   "chronologicalYear": "2004",
@@ -202,6 +209,7 @@
   "universe": "New Line Cinema",
   "earth": "Earth-26320",
   "rating": "3.5",
+  "poster": "images/bt.webp"
   "description": "Follows Blade as he becomes hunted by both humans and vampires after being framed for a series of crimes, forcing him to work with a new generation of vampire hunters. Introduces Dracula (known as Drake), one of the oldest and most powerful vampires in existence, and the Nightstalkers, a group of human vampire hunters including Hannibal King and Abigail Whistler, who bring a new dynamic to Blade's mission."},
   {"number": 23, "title": "Elektra",
   "chronologicalYear": "2005",
@@ -211,6 +219,7 @@
   "universe": "Fox",
   "earth": "Earth-701306",
   "rating": "2",
+  "poster": "images/e.webp"
   "description": "Follows Elektra Natchios, a skilled assassin who must protect a young girl with a mysterious connection to a powerful ancient organisation. Explores Elektra's character beyond her role in Daredevil, focusing on her trauma, redemption, and struggle between being a killer and a protector. Introduces The Hand, a secretive group of assassins connected to the wider Daredevil mythology."},
   {"number": 24, "title": "Fantastic Four",
   "chronologicalYear": "2005",
@@ -219,6 +228,7 @@
   "universe": "Fox",
   "earth": "Earth-121698",
   "rating": "4",
+  "poster": "images/ff.webp"
   "description": "Follows Reed Richards, Sue Storm, Johnny Storm, and Ben Grimm as a scientific mission exposes them to cosmic radiation, giving them incredible abilities and transforming them into Marvel's first family. Introduces the Fantastic Four as a team of heroes who must learn to adapt to their powers. Explores the contrast between scientific discovery and responsibility, especially through Reed Richards' genius and obsession with solving problems. Introduces Victor Von Doom, a brilliant scientist and former ally whose own ambition and resentment turn him into the villain Doctor Doom."},
   {"number": 25, "title": "X-Men: The Last Stand",
   "chronologicalYear": "2006",
