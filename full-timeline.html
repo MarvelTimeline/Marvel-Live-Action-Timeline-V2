@@ -27,9 +27,104 @@
 
         <section class="timeline-content">
 
-        </section>
+                </section>
 
     </main>
+
+    <script>
+    fetch('timeline.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Could not load timeline.json');
+            }
+
+            return response.json();
+        })
+        .then(data => {
+            const timeline = document.querySelector('.timeline-content');
+
+            if (!timeline) {
+                throw new Error('Timeline content section not found');
+            }
+
+            timeline.innerHTML = '';
+
+            data.forEach(item => {
+                const article = document.createElement('article');
+                article.className = 'timeline-entry';
+
+                const title = document.createElement('h2');
+                title.className = 'timeline-title';
+                title.textContent = item.title;
+
+                const content = document.createElement('div');
+                content.className = 'timeline-info';
+
+                const set = document.createElement('p');
+                set.textContent = `Set: ${item.chronologicalYear}`;
+
+                const release = document.createElement('p');
+                release.textContent = `Released: ${item.releaseYear}`;
+
+                const details = document.createElement('p');
+                details.textContent = `${item.type} • ${item.universe} • ${item.earth}`;
+
+                const rating = document.createElement('p');
+                rating.textContent = `⭐ ${item.rating}/5`;
+
+                const overviewToggle = document.createElement('button');
+                overviewToggle.className = 'overview-toggle';
+                overviewToggle.textContent = 'Overview';
+
+                const overview = document.createElement('p');
+                overview.className = 'timeline-overview';
+                overview.textContent = item.description;
+                overview.hidden = true;
+
+                overviewToggle.addEventListener('click', () => {
+                    overview.hidden = !overview.hidden;
+                });
+
+                content.appendChild(set);
+                content.appendChild(release);
+
+                if (item.flashbacks) {
+                    const flashbacks = document.createElement('p');
+                    flashbacks.textContent = `Flashbacks: ${item.flashbacks}`;
+                    content.appendChild(flashbacks);
+                }
+
+                if (item.flashForwards) {
+                    const flashForwards = document.createElement('p');
+                    flashForwards.textContent = `Flash-forwards: ${item.flashForwards}`;
+                    content.appendChild(flashForwards);
+                }
+
+                content.appendChild(details);
+                content.appendChild(rating);
+                content.appendChild(overviewToggle);
+                content.appendChild(overview);
+
+                if (item.poster) {
+                    const poster = document.createElement('img');
+                    poster.src = item.poster;
+                    poster.alt = `${item.title} poster`;
+                    poster.className = 'timeline-poster';
+
+                    article.appendChild(title);
+                    article.appendChild(poster);
+                } else {
+                    article.appendChild(title);
+                }
+
+                article.appendChild(content);
+                timeline.appendChild(article);
+            });
+        })
+        .catch(error => {
+            console.error('Full Timeline loading failed:', error);
+        });
+    </script>
 
 </body>
 </html>
