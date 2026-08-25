@@ -465,12 +465,10 @@ main {
 
 .timeline-entry {
     width: 100%;
-
     display: grid;
 
-    grid-template-columns:
-        220px
-        minmax(0, 1fr);
+    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-rows: auto auto;
 
     column-gap: 55px;
 
