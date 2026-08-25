@@ -1,24 +1,34 @@
-/* =========================================================
-   MARVEL TIMELINE V2 — LANDING PAGE FOUNDATION
-   ========================================================= */
+/* ============================================================
+   MARVEL TIMELINE V2
+   COMPLETE LAYOUT RESET
+   ============================================================ */
+
+
+/* ============================================================
+   1. GLOBAL VARIABLES
+   ============================================================ */
 
 :root {
-    --background: #101116;
-    --background-dark: #08090d;
-    --panel: #171920;
-    --panel-light: #20232c;
-    --text: #f5f1e8;
-    --muted: #b9b6b0;
+    --background: #080808;
+    --background-light: #111111;
+    --panel: #151515;
+    --panel-light: #1c1c1c;
+
+    --text: #f5f5f5;
+    --muted: #b8b8b8;
+
     --accent: #e3262e;
     --accent-dark: #a9141b;
+
     --gold: #f1c75b;
+
     --border: rgba(255, 255, 255, 0.14);
 }
 
 
-/* =========================================================
-   RESET
-   ========================================================= */
+/* ============================================================
+   2. RESET
+   ============================================================ */
 
 * {
     box-sizing: border-box;
@@ -26,58 +36,66 @@
 
 html {
     scroll-behavior: smooth;
-    background: #07080b;
+    background: var(--background);
 }
 
 body {
     margin: 0;
     min-height: 100vh;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     color: var(--text);
-    background:
-    radial-gradient(
-        circle at 50% 18%,
-        rgba(120, 20, 25, 0.10),
-        transparent 38%
-    ),
-    linear-gradient(
-        135deg,
-        #07080b,
-        #111218
-    );
 
-    position: relative;
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(120, 20, 25, 0.10),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #070707,
+            #111111
+        );
+
     overflow-x: hidden;
 }
 
 
-/* =========================================================
-   COMIC-BOOK BACKGROUND
-   ========================================================= */
+/* ============================================================
+   3. SUBTLE BACKGROUND TEXTURE
+   ============================================================ */
 
 body::before {
     content: "";
+
     position: fixed;
     inset: 0;
 
     background-image:
         radial-gradient(
-            rgba(255, 255, 255, 0.08) 1px,
+            rgba(255, 255, 255, 0.07) 1px,
             transparent 1px
         );
 
     background-size: 8px 8px;
 
-    opacity: 0.25;
+    opacity: 0.18;
+
     pointer-events: none;
+
     z-index: -2;
 }
 
 body::after {
     content: "";
+
     position: fixed;
+
     width: 900px;
     height: 900px;
 
@@ -94,17 +112,21 @@ body::after {
     border-radius: 50%;
 
     pointer-events: none;
+
     z-index: -1;
 }
 
 
-/* =========================================================
-   HEADER
-   ========================================================= */
+/* ============================================================
+   4. HEADER
+   ============================================================ */
 
 .site-header {
     width: 100%;
-    padding: 24px 5vw;
+
+    padding:
+        22px
+        clamp(24px, 5vw, 80px);
 
     display: flex;
     align-items: center;
@@ -112,20 +134,24 @@ body::after {
 
     border-bottom: 1px solid var(--border);
 
-    background: rgba(8, 9, 13, 0.82);
+    background: rgba(8, 8, 8, 0.88);
 
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .site-logo {
     color: var(--text);
+
     text-decoration: none;
 
     font-size: 1rem;
     font-weight: 900;
+
     letter-spacing: 0.12em;
 
-    transition: color 0.2s ease;
+    transition:
+        color 0.2s ease;
 }
 
 .site-logo:hover {
@@ -134,6 +160,7 @@ body::after {
 
 .admin-link {
     color: var(--muted);
+
     text-decoration: none;
 
     font-size: 0.9rem;
@@ -152,40 +179,57 @@ body::after {
 
 .admin-link:hover {
     color: var(--text);
+
     background: var(--accent);
+
     border-color: var(--accent);
 }
 
 
-/* =========================================================
-   MAIN
-   ========================================================= */
+/* ============================================================
+   5. MAIN PAGE CONTAINER
+   ============================================================ */
 
 main {
-    width: min(1450px, 90%);
+    width: min(1100px, calc(100% - 48px));
+
     margin: 0 auto;
-    padding: 80px 0 100px;
+
+    padding:
+        70px
+        0
+        100px;
 }
 
 
-/* =========================================================
-   LANDING INTRO
-   ========================================================= */
+/* ============================================================
+   6. LANDING INTRO
+   ============================================================ */
 
 .landing-intro {
-    text-align: center;
     max-width: 900px;
+
     margin: 0 auto;
+
+    text-align: center;
 }
 
 .landing-intro h1 {
     margin: 0;
 
-    font-size: clamp(2.4rem, 6vw, 5.5rem);
+    font-size:
+        clamp(
+            2.4rem,
+            6vw,
+            5.5rem
+        );
+
     line-height: 0.95;
 
     font-weight: 950;
+
     letter-spacing: -0.045em;
+
     text-transform: uppercase;
 
     text-shadow:
@@ -194,18 +238,23 @@ main {
 
 .intro-text {
     max-width: 720px;
-    margin: 30px auto 0;
+
+    margin:
+        30px
+        auto
+        0;
 
     color: var(--muted);
 
     font-size: 1.08rem;
+
     line-height: 1.7;
 }
 
 
-/* =========================================================
-   SECTION HEADINGS
-   ========================================================= */
+/* ============================================================
+   7. SECTION HEADINGS
+   ============================================================ */
 
 .order-selection,
 .destination-section {
@@ -214,23 +263,36 @@ main {
 
 .order-selection h2,
 .destination-section h2 {
-    margin: 0 0 28px;
+    margin:
+        0
+        0
+        28px;
 
     text-align: center;
 
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size:
+        clamp(
+            1.5rem,
+            3vw,
+            2rem
+        );
+
     text-transform: uppercase;
+
     letter-spacing: 0.04em;
 }
 
 
-/* =========================================================
-   ORDER OPTIONS
-   ========================================================= */
+/* ============================================================
+   8. ORDER OPTIONS
+   ============================================================ */
 
 .order-options {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
     gap: 20px;
 }
 
@@ -241,18 +303,20 @@ main {
 
     display: flex;
     flex-direction: column;
+
     align-items: flex-start;
     justify-content: center;
 
     text-align: left;
 
     color: var(--text);
+
     background: var(--panel);
 
     border: 1px solid var(--border);
     border-top: 4px solid var(--accent);
 
-    border-radius: 6px;
+    border-radius: 8px;
 
     cursor: pointer;
 
@@ -267,17 +331,21 @@ main {
 
 .order-card:hover {
     transform: translateY(-5px);
+
     background: var(--panel-light);
+
     border-color: var(--accent);
 }
 
 .order-icon {
     font-size: 2rem;
+
     margin-bottom: 16px;
 }
 
 .order-title {
     font-size: 1.45rem;
+
     font-weight: 900;
 }
 
@@ -287,18 +355,20 @@ main {
     color: var(--muted);
 
     font-size: 0.95rem;
+
     line-height: 1.5;
 }
 
 
-/* =========================================================
-   DESTINATION GRID
-   ========================================================= */
+/* ============================================================
+   9. DESTINATION GRID
+   ============================================================ */
 
 .destination-grid {
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
     gap: 18px;
 }
@@ -310,16 +380,19 @@ main {
 
     display: flex;
     flex-direction: column;
+
     align-items: center;
     justify-content: center;
 
     text-align: center;
 
     color: var(--text);
+
     background: rgba(23, 25, 32, 0.92);
 
     border: 1px solid var(--border);
-    border-radius: 6px;
+
+    border-radius: 8px;
 
     cursor: pointer;
 
@@ -336,16 +409,20 @@ main {
     transform: translateY(-5px);
 
     background: var(--panel-light);
-    border-color: rgba(241, 199, 91, 0.7);
+
+    border-color:
+        rgba(241, 199, 91, 0.7);
 }
 
 .destination-icon {
     font-size: 2.2rem;
+
     margin-bottom: 15px;
 }
 
 .destination-title {
     font-size: 1.35rem;
+
     font-weight: 900;
 }
 
@@ -355,24 +432,270 @@ main {
     color: var(--muted);
 
     font-size: 0.92rem;
+
     line-height: 1.5;
 }
 
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
+/* ============================================================
+   10. TIMELINE ENTRY
+   ============================================================ */
+
+/*
+   DESKTOP:
+   ┌─────────────────┬─────────────────────────────┐
+   │                 │ TITLE                       │
+   │     POSTER      │ SET                          │
+   │                 │ RELEASED                     │
+   │                 │ STUDIO • UNIVERSE            │
+   │                 │ RATING                       │
+   │                 │ OVERVIEW BUTTON              │
+   └─────────────────┴─────────────────────────────┘
+
+   MOBILE:
+   TITLE
+   POSTER
+   INFO
+   GAP
+   TITLE
+   POSTER
+   INFO
+*/
+
+
+.timeline-entry {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        220px
+        minmax(0, 1fr);
+
+    column-gap: 55px;
+
+    align-items: start;
+
+    margin-bottom: 75px;
+}
+
+
+/* ============================================================
+   11. TIMELINE TITLE
+   ============================================================ */
+
+.timeline-title {
+    grid-column: 2;
+    grid-row: 1;
+
+    margin: 0 0 16px;
+
+    font-size:
+        clamp(
+            1.7rem,
+            3vw,
+            2.2rem
+        );
+
+    line-height: 1.1;
+
+    font-weight: 900;
+}
+
+
+/* ============================================================
+   12. TIMELINE POSTER
+   ============================================================ */
+
+.timeline-entry .timeline-poster {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+
+    width: 220px;
+    max-width: 220px;
+
+    height: auto;
+
+    display: block;
+
+    margin: 0;
+
+    border-radius: 6px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.45);
+
+    object-fit: cover;
+}
+
+
+/* ============================================================
+   13. TIMELINE INFO
+   ============================================================ */
+
+.timeline-entry .timeline-info {
+    grid-column: 2;
+    grid-row: 2;
+
+    width: 100%;
+
+    margin: 0;
+
+    min-width: 0;
+}
+
+
+/* ============================================================
+   14. TIMELINE META / INFORMATION
+   ============================================================ */
+
+.timeline-info p {
+    margin: 0 0 14px;
+
+    color: var(--text);
+
+    font-size: 1rem;
+
+    line-height: 1.45;
+}
+
+.timeline-info strong {
+    color: var(--text);
+}
+
+
+/* ============================================================
+   15. RATING
+   ============================================================ */
+
+.timeline-rating {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin:
+        8px
+        0
+        16px;
+
+    font-size: 1rem;
+}
+
+.timeline-rating .star,
+.timeline-rating span:first-child {
+    color: var(--gold);
+}
+
+
+/* ============================================================
+   16. OVERVIEW BUTTON
+   ============================================================ */
+
+.overview-toggle {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding:
+        7px
+        12px;
+
+    margin-top: 2px;
+
+    color: var(--text);
+
+    background: transparent;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.25);
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.overview-toggle:hover {
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border-color:
+        rgba(255, 255, 255, 0.6);
+}
+
+.overview-toggle:active {
+    transform: scale(0.97);
+}
+
+
+/* ============================================================
+   17. OVERVIEW / DESCRIPTION
+   ============================================================ */
+
+/*
+   The overview must NOT occupy space until opened.
+
+   These selectors cover the common overview containers
+   used by the timeline without changing the JavaScript.
+*/
+
+.timeline-overview,
+.overview,
+.overview-content,
+.timeline-description {
+    margin-top: 14px;
+
+    color: var(--muted);
+
+    font-size: 0.95rem;
+
+    line-height: 1.55;
+}
+
+
+/*
+   If the overview uses the HTML hidden attribute,
+   keep it hidden.
+*/
+
+.timeline-overview[hidden],
+.overview[hidden],
+.overview-content[hidden],
+.timeline-description[hidden] {
+    display: none;
+}
+
+
+/* ============================================================
+   18. FOOTER
+   ============================================================ */
 
 .site-footer {
-    padding: 30px 20px;
+    padding:
+        30px
+        20px;
 
     text-align: center;
 
     color: var(--muted);
 
-    border-top: 1px solid var(--border);
+    border-top:
+        1px solid
+        var(--border);
 
-    background: rgba(8, 9, 13, 0.75);
+    background:
+        rgba(8, 9, 13, 0.75);
 }
 
 .site-footer p {
@@ -380,135 +703,340 @@ main {
 }
 
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+/* ============================================================
+   19. GENERAL IMAGE SAFETY
+   ============================================================ */
 
-/* TIMELINE POSTERS */
-.timeline-poster {
-    display: block;
-    width: 260px;
-    max-width: 260px;
-    height: 430px;
-    margin: 20px auto 0;
-    border-radius: 6px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+img {
+    max-width: 100%;
 }
 
-.timeline-entry {
-    display: grid;
-    grid-template-columns: 300px minmax(0, 1fr);
-    grid-template-rows: auto auto;
-    column-gap: 80px;
-    row-gap: 12px;
-    align-items: start;
-    width: 100%;
-    margin-bottom: 60px;
+
+/* ============================================================
+   20. TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    main {
+        width:
+            min(
+                100% - 40px,
+                760px
+            );
+
+        padding:
+            55px
+            0
+            80px;
+    }
+
+    .timeline-entry {
+        grid-template-columns:
+            190px
+            minmax(0, 1fr);
+
+        column-gap: 35px;
+    }
+
+    .timeline-entry .timeline-poster {
+        width: 190px;
+        max-width: 190px;
+    }
+
 }
 
-.timeline-title {
-    grid-column: 2;
-    grid-row: 1;
-    margin: 0;
-}
 
-.timeline-entry .timeline-poster {
-    grid-column: 1;
-    grid-row: 1 / 3;
-    margin: 0;
-}
-
-.timeline-entry .timeline-info {
-    grid-column: 2;
-    grid-row: 2;
-    margin: 0;
-}
-
-.overview-toggle {
-    background: transparent;
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 6px;
-    padding: 7px 12px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.overview-toggle:hover {
-    border-color: rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 0.08);
-}
-
-.overview-toggle:active {
-    transform: scale(0.97);
-}
+/* ============================================================
+   21. MOBILE
+   ============================================================ */
 
 @media (max-width: 700px) {
 
+    /*
+       MOBILE IS COMPLETELY SEPARATE FROM DESKTOP.
+
+       We intentionally destroy the desktop two-column
+       structure here instead of trying to shrink it.
+    */
+
     .site-header {
-        padding: 18px 5%;
+        padding:
+            18px
+            5%;
     }
 
+    .site-logo {
+        font-size: 0.9rem;
+    }
+
+    .admin-link {
+        font-size: 0.8rem;
+
+        padding:
+            7px
+            11px;
+    }
+
+
+    /* ---------------- MAIN ---------------- */
+
     main {
-        width: 90%;
-        padding: 55px 0 70px;
+        width: 100%;
+
+        padding:
+            55px
+            7%
+            80px;
+    }
+
+
+    /* ---------------- INTRO ---------------- */
+
+    .landing-intro {
+        width: 100%;
     }
 
     .landing-intro h1 {
-        font-size: clamp(2.2rem, 12vw, 4rem);
+        font-size:
+            clamp(
+                2.2rem,
+                12vw,
+                4rem
+            );
     }
 
     .intro-text {
         font-size: 1rem;
+
+        line-height: 1.6;
     }
+
+
+    /* ---------------- SECTIONS ---------------- */
 
     .order-selection,
     .destination-section {
         margin-top: 60px;
     }
 
+
+    /* ---------------- CARDS ---------------- */
+
     .order-options,
     .destination-grid {
         grid-template-columns: 1fr;
     }
 
-    .order-card,
-    .destination-card {
-        min-height: 150px;
-    }
 
-    .order-card {
-        padding: 26px;
-    }
+    /* ---------------- TIMELINE ---------------- */
 
-    .destination-card {
-        padding: 26px;
-    }
-
-       .timeline-entry {
+    .timeline-entry {
         display: flex;
+
         flex-direction: column;
-        gap: 20px;
+
         width: 100%;
+
+        gap: 0;
+
+        margin-bottom: 90px;
     }
+
+
+    /*
+       TITLE FIRST
+    */
 
     .timeline-title {
         order: 1;
+
         width: 100%;
-        margin: 0;
+
+        margin:
+            0
+            0
+            24px;
+
+        font-size:
+            clamp(
+                1.6rem,
+                7vw,
+                2rem
+            );
+
+        line-height: 1.1;
     }
+
+
+    /*
+       POSTER SECOND
+    */
 
     .timeline-entry .timeline-poster {
         order: 2;
-        width: 260px;
-        max-width: 100%;
+
+        width: min(
+            260px,
+            100%
+        );
+
+        max-width: 260px;
+
         height: auto;
-        margin: 0 auto;
+
+        margin:
+            0
+            auto
+            28px;
     }
+
+
+    /*
+       INFO THIRD
+    */
 
     .timeline-entry .timeline-info {
         order: 3;
+
         width: 100%;
+
+        margin: 0;
     }
+
+
+    /*
+       Keep the information readable on phones.
+    */
+
+    .timeline-info p {
+        font-size: 1rem;
+
+        line-height: 1.5;
+
+        margin-bottom: 14px;
+    }
+
+
+    /*
+       Overview stays underneath the button when opened.
+    */
+
+    .overview-toggle {
+        margin-top: 2px;
+    }
+
+
+    /*
+       Make sure nothing from the desktop grid
+       can create horizontal overflow.
+    */
+
+    .timeline-entry,
+    .timeline-title,
+    .timeline-info {
+        min-width: 0;
+
+        max-width: 100%;
+    }
+
+}
+
+
+/* ============================================================
+   22. SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 450px) {
+
+    main {
+        padding:
+            45px
+            6%
+            70px;
+    }
+
+    .site-header {
+        padding:
+            16px
+            6%;
+    }
+
+    .landing-intro h1 {
+        font-size:
+            clamp(
+                2rem,
+                12vw,
+                3.2rem
+            );
+    }
+
+    .timeline-entry {
+        margin-bottom: 80px;
+    }
+
+    .timeline-entry .timeline-poster {
+        width: 240px;
+        max-width: 85vw;
+    }
+
+    .timeline-title {
+        font-size: 1.55rem;
+    }
+
+}
+
+
+/* ============================================================
+   23. VERY SMALL SCREENS
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+    main {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .timeline-entry .timeline-poster {
+        width: 220px;
+    }
+
+    .timeline-title {
+        font-size: 1.45rem;
+    }
+
+}
+
+
+/* ============================================================
+   24. ACCESSIBILITY
+   ============================================================ */
+
+button:focus-visible,
+a:focus-visible {
+    outline:
+        2px solid
+        var(--accent);
+
+    outline-offset: 3px;
+}
+
+
+/* ============================================================
+   25. REDUCE MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        transition: none !important;
+
+        animation: none !important;
+    }
+
 }
