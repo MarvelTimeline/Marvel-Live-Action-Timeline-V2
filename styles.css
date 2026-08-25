@@ -510,7 +510,7 @@ main {
 
 .timeline-entry .timeline-poster {
     grid-column: 1;
-    grid-row: 1 / span 2;
+    grid-row: 1;
 
     width: 220px;
     max-width: 220px;
