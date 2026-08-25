@@ -717,6 +717,37 @@ img {
     margin-top: 40px;
 }
 
+.timeline-switch {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.timeline-switch button {
+    background: transparent;
+    color: var(--text);
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    padding: 8px 14px;
+
+    font-size: 1rem;
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.timeline-switch button:hover {
+    background: var(--accent);
+    color: var(--text);
+    border-color: var(--accent);
+}
 
 /* ============================================================
    20. TABLET
