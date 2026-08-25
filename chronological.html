@@ -1308,7 +1308,7 @@ rating.textContent = `⭐ ${item.rating}/5`;
 
 const overviewToggle = document.createElement('button');
 overviewToggle.className = 'overview-toggle';
-overviewToggle.textContent = 'Overview';
+overviewToggle.innerHTML = 'Overview <span class="overview-arrow">⌄</span>';
 
 const overview = document.createElement('p');
 overview.className = 'timeline-overview';
@@ -1317,9 +1317,9 @@ overview.hidden = true;
 
 overviewToggle.addEventListener('click', () => {
     overview.hidden = !overview.hidden;
-    overviewToggle.textContent = overview.hidden
-        ? 'Overview⌄'
-        : 'Overview⌃';
+    overviewToggle.innerHTML = overview.hidden
+    ? 'Overview <span class="overview-arrow">⌄</span>'
+    : 'Overview <span class="overview-arrow">⌃</span>';
 });
 
 content.appendChild(set);
