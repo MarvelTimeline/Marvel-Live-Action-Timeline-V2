@@ -72,12 +72,7 @@ function loadTimeline(filename) {
                 set.textContent = `Set: ${item.chronologicalYear}`;
 
                 const release = document.createElement('p');
-
-                if (currentOrder === 'release') {
-                    release.textContent = `Released: ${item.releaseYear.substring(0, 4)}`;
-                } else {
-                    release.textContent = `Released: ${item.releaseYear}`;
-                }
+release.textContent = `Released: ${item.releaseYear}`;
 
                 const details = document.createElement('p');
                 details.textContent = `${item.type} • ${item.universe} • ${item.earth}`;
