@@ -637,12 +637,6 @@ main {
     transform: scale(0.97);
 }
 
-.overview-arrow {
-    display: inline-block;
-    margin-left: 5px;
-    position: relative;
-    top: 1px;
-}
 
 /* ============================================================
    17. OVERVIEW / DESCRIPTION
