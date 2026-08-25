@@ -49,8 +49,14 @@ function loadTimeline(filename) {
             return response.json();
         })
         .then(data => {
-            const timeline = document.querySelector('.timeline-content');
 
+            if (currentOrder === 'release') {
+                data.sort((a, b) =>
+                    new Date(a.releaseYear) - new Date(b.releaseYear)
+                );
+            }
+
+            const timeline = document.querySelector('.timeline-content');
             if (!timeline) {
                 throw new Error('Timeline content section not found');
             }
