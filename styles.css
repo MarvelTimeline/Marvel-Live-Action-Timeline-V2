@@ -637,6 +637,12 @@ main {
     transform: scale(0.97);
 }
 
+.overview-arrow {
+    display: inline-block;
+    margin-left: 4px;
+    line-height: 1;
+    vertical-align: middle;
+}
 
 /* ============================================================
    17. OVERVIEW / DESCRIPTION
