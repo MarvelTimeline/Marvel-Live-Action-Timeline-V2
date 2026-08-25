@@ -3,35 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marvel Release Order</title>
+
+    <title>Release Order | Marvel Live-Action Timeline</title>
+
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-    <h1>Marvel — Release Order</h1>
+    <main class="timeline-page">
 
-    <div id="release-list"></div>
+        <header class="timeline-header">
+            <a href="index.html" class="back-link">← Back to Home</a>
+
+            <h1>RELEASE ORDER</h1>
+
+            <p>
+                Experience the Marvel live-action universe in the order audiences originally did.
+            </p>
+        </header>
+
+        <section class="timeline-content"></section>
+
+    </main>
 
     <script>
         fetch('release.json')
-            .then(response => response.json())
-            .then(entries => {
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Could not load release.json');
+                }
 
-                entries.sort((a, b) =>
+                return response.json();
+            })
+            .then(data => {
+
+                data.sort((a, b) =>
                     new Date(a.releaseYear) - new Date(b.releaseYear)
                 );
 
-                const list = document.getElementById('release-list');
+                const timeline = document.querySelector('.timeline-content');
 
-                entries.forEach(entry => {
-                    const item = document.createElement('div');
+                if (!timeline) {
+                    throw new Error('Timeline content section not found');
+                }
 
-                    item.innerHTML = `
-                        <h2>${entry.title}</h2>
-                        <p>${entry.releaseYear}</p>
-                    `;
+                timeline.innerHTML = '';
 
-                    list.appendChild(item);
+                data.forEach(item => {
+
+                    const article = document.createElement('article');
+                    article.className = 'timeline-entry';
+
+                    const title = document.createElement('h2');
+                    title.className = 'timeline-title';
+                    title.textContent = item.title;
+
+                    const content = document.createElement('div');
+                    content.className = 'timeline-info';
+
+                    const set = document.createElement('p');
+                    set.textContent = `Set: ${item.chronologicalYear}`;
+
+                    const release = document.createElement('p');
+                    release.textContent = `Released: ${item.releaseYear.substring(0, 4)}`;
+
+                    const flashbacks = document.createElement('p');
+                    if (item.flashbacks) {
+                        flashbacks.textContent = `Flashbacks: ${item.flashbacks}`;
+                    }
+
+                    const flashForwards = document.createElement('p');
+                    if (item.flashForwards) {
+                        flashForwards.textContent = `Flash-forwards: ${item.flashForwards}`;
+                    }
+
+                    const details = document.createElement('p');
+                    details.textContent = `${item.type} • ${item.universe} • ${item.earth}`;
+
+                    const rating = document.createElement('p');
+                    rating.textContent = `⭐ ${item.rating}/5`;
+
+                    const overviewToggle = document.createElement('button');
+                    overviewToggle.className = 'overview-toggle';
+                    overviewToggle.textContent = 'Overview';
+
+                    const overview = document.createElement('p');
+                    overview.className = 'timeline-overview';
+                    overview.textContent = item.description;
+                    overview.hidden = true;
+
+                    overviewToggle.addEventListener('click', () => {
+                        overview.hidden = !overview.hidden;
+                        overviewToggle.textContent = 'Overview';
+                    });
+
+                    content.appendChild(set);
+                    content.appendChild(release);
+
+                    if (item.flashbacks) {
+                        content.appendChild(flashbacks);
+                    }
+
+                    if (item.flashForwards) {
+                        content.appendChild(flashForwards);
+                    }
+
+                    content.appendChild(details);
+                    content.appendChild(rating);
+                    content.appendChild(overviewToggle);
+                    content.appendChild(overview);
+
+                    if (item.poster) {
+                        const poster = document.createElement('img');
+                        poster.src = item.poster;
+                        poster.alt = `${item.title} poster`;
+                        poster.className = 'timeline-poster';
+
+                        article.appendChild(title);
+                        article.appendChild(poster);
+                    } else {
+                        article.appendChild(title);
+                    }
+
+                    article.appendChild(content);
+
+                    timeline.appendChild(article);
                 });
+            })
+            .catch(error => {
+                console.error('Release timeline loading failed:', error);
             });
     </script>
 
