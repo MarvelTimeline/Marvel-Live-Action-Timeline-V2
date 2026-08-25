@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel Release Order</title>
+</head>
+<body>
+
+    <h1>Marvel — Release Order</h1>
+
+    <div id="release-list"></div>
+
+    <script>
+        fetch('timeline.json')
+            .then(response => response.json())
+            .then(entries => {
+
+                entries.sort((a, b) =>
+                    new Date(a.releaseYear) - new Date(b.releaseYear)
+                );
+
+                const list = document.getElementById('release-list');
+
+                entries.forEach(entry => {
+                    const item = document.createElement('div');
+
+                    item.innerHTML = `
+                        <h2>${entry.title}</h2>
+                        <p>${entry.releaseYear}</p>
+                    `;
+
+                    list.appendChild(item);
+                });
+            });
+    </script>
+
+</body>
+</html>
