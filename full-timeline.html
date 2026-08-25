@@ -15,15 +15,20 @@
 
         <header class="timeline-header">
 
-            <a href="index.html" class="back-link">← Back to Home</a>
+    <a href="index.html" class="back-link">← Back to Home</a>
 
-            <h1>FULL TIMELINE</h1>
+    <h1>FULL TIMELINE</h1>
 
-            <p>
-                Browse the complete Marvel live-action timeline.
-            </p>
+    <p>
+        Browse the complete Marvel live-action timeline.
+    </p>
 
-        </header>
+    <div class="timeline-switch">
+        <button id="chronological-button">🕐 Chronological</button>
+        <button id="release-button">🎬 Release</button>
+    </div>
+
+</header>
 
         <section class="timeline-content">
 
@@ -32,10 +37,13 @@
     </main>
 
     <script>
-    fetch('timeline.json')
+let currentOrder = 'chronological';
+
+function loadTimeline(filename) {
+    fetch(filename)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Could not load timeline.json');
+                throw new Error(`Could not load ${filename}`);
             }
 
             return response.json();
@@ -64,7 +72,12 @@
                 set.textContent = `Set: ${item.chronologicalYear}`;
 
                 const release = document.createElement('p');
-                release.textContent = `Released: ${item.releaseYear}`;
+
+                if (currentOrder === 'release') {
+                    release.textContent = `Released: ${item.releaseYear.substring(0, 4)}`;
+                } else {
+                    release.textContent = `Released: ${item.releaseYear}`;
+                }
 
                 const details = document.createElement('p');
                 details.textContent = `${item.type} • ${item.universe} • ${item.earth}`;
@@ -122,9 +135,22 @@
             });
         })
         .catch(error => {
-            console.error('Full Timeline loading failed:', error);
+            console.error('Timeline loading failed:', error);
         });
-    </script>
+}
+
+document.getElementById('chronological-button').addEventListener('click', () => {
+    currentOrder = 'chronological';
+    loadTimeline('timeline.json');
+});
+
+document.getElementById('release-button').addEventListener('click', () => {
+    currentOrder = 'release';
+    loadTimeline('release.json');
+});
+
+loadTimeline('timeline.json');
+</script>
 
 </body>
 </html>
