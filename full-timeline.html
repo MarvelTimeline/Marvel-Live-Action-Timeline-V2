@@ -204,20 +204,24 @@ function applyFilters() {
 
     if (selectedType !== 'all') {
 
-        filteredData = filteredData.filter(item =>
-            item.type === selectedType
-        );
+    filteredData = filteredData.filter(item =>
+        Array.isArray(item.type)
+            ? item.type.includes(selectedType)
+            : item.type === selectedType
+    );
 
-    }
+}
 
 
     if (selectedUniverse !== 'all') {
 
-        filteredData = filteredData.filter(item =>
-            item.universe === selectedUniverse
-        );
+    filteredData = filteredData.filter(item =>
+        Array.isArray(item.universe)
+            ? item.universe.includes(selectedUniverse)
+            : item.universe === selectedUniverse
+    );
 
-    }
+}
 
 
     renderTimeline(filteredData);
