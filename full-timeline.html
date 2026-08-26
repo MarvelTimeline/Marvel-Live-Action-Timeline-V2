@@ -30,15 +30,15 @@
 
             <div class="timeline-search">
 
-    <label for="timeline-search">Search</label>
+                <label for="timeline-search">Search</label>
 
-    <input
-        type="text"
-        id="timeline-search"
-        placeholder="Search the timeline..."
-    >
+                <input
+                    type="text"
+                    id="timeline-search"
+                    placeholder="Search the timeline..."
+                >
 
-</div>
+            </div>
 
             <div class="timeline-filter">
 
@@ -67,6 +67,8 @@
                 </select>
 
             </div>
+
+            <p id="timeline-count">Showing 0 of 0 entries</p>
 
         </header>
 
@@ -219,36 +221,42 @@ function applyFilters() {
 
     if (selectedType !== 'all') {
 
-    filteredData = filteredData.filter(item =>
-        Array.isArray(item.type)
-            ? item.type.includes(selectedType)
-            : item.type === selectedType
-    );
+        filteredData = filteredData.filter(item =>
+            Array.isArray(item.type)
+                ? item.type.includes(selectedType)
+                : item.type === selectedType
+        );
 
-}
+    }
 
 
     if (selectedUniverse !== 'all') {
 
-    filteredData = filteredData.filter(item =>
-        Array.isArray(item.universe)
-            ? item.universe.includes(selectedUniverse)
-            : item.universe === selectedUniverse
-    );
+        filteredData = filteredData.filter(item =>
+            Array.isArray(item.universe)
+                ? item.universe.includes(selectedUniverse)
+                : item.universe === selectedUniverse
+        );
 
-}
+    }
 
 
     if (searchTerm !== '') {
 
-    filteredData = filteredData.filter(item =>
-        item.title.toLowerCase().includes(searchTerm)
-    );
+        filteredData = filteredData.filter(item =>
+            item.title.toLowerCase().includes(searchTerm)
+        );
 
-}
+    }
 
 
-renderTimeline(filteredData);
+    const count = document.getElementById('timeline-count');
+
+    count.textContent =
+        `Showing ${filteredData.length} of ${currentData.length} entries`;
+
+
+    renderTimeline(filteredData);
 
 }
 
@@ -336,7 +344,7 @@ document
     });
 
 
-        document
+document
     .getElementById('timeline-search')
     .addEventListener('input', () => {
 
@@ -344,7 +352,7 @@ document
 
     });
 
-        
+
 loadTimeline('timeline.json');
 
 </script>
