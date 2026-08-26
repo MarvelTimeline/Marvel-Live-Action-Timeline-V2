@@ -210,6 +210,9 @@ function applyFilters() {
     const selectedUniverse =
         document.getElementById('universe-filter').value;
 
+    const searchTerm =
+        document.getElementById('timeline-search').value.toLowerCase().trim();
+
 
     let filteredData = currentData;
 
@@ -236,7 +239,16 @@ function applyFilters() {
 }
 
 
-    renderTimeline(filteredData);
+    if (searchTerm !== '') {
+
+    filteredData = filteredData.filter(item =>
+        item.title.toLowerCase().includes(searchTerm)
+    );
+
+}
+
+
+renderTimeline(filteredData);
 
 }
 
@@ -324,6 +336,15 @@ document
     });
 
 
+        document
+    .getElementById('timeline-search')
+    .addEventListener('input', () => {
+
+        applyFilters();
+
+    });
+
+        
 loadTimeline('timeline.json');
 
 </script>
