@@ -749,6 +749,232 @@ img {
     border-color: var(--accent);
 }
 
+/* =========================================
+   FULL TIMELINE CONTROLS
+   ========================================= */
+
+.timeline-search,
+.timeline-filter {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+    margin-right: 18px;
+    vertical-align: top;
+}
+
+.timeline-search label,
+.timeline-filter label {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+
+/* Search box */
+
+.timeline-search input {
+    width: 360px;
+    height: 58px;
+    box-sizing: border-box;
+
+    padding: 0 18px;
+
+    background: #111111;
+    color: #ffffff;
+
+    border: 1px solid #444444;
+    border-radius: 14px;
+
+    font-size: 18px;
+    font-family: inherit;
+
+    outline: none;
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.timeline-search input::placeholder {
+    color: #999999;
+}
+
+.timeline-search input:focus {
+    border-color: #9b4dff;
+    box-shadow: 0 0 0 2px rgba(155, 77, 255, 0.15);
+}
+
+
+/* Dropdown filters */
+
+.timeline-filter select {
+    width: 270px;
+    height: 58px;
+    box-sizing: border-box;
+
+    padding: 0 18px;
+
+    background: #111111;
+    color: #ffffff;
+
+    border: 1px solid #444444;
+    border-radius: 14px;
+
+    font-size: 18px;
+    font-family: inherit;
+
+    outline: none;
+    cursor: pointer;
+
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.timeline-filter select:focus {
+    border-color: #9b4dff;
+    box-shadow: 0 0 0 2px rgba(155, 77, 255, 0.15);
+}
+
+
+/* Results count */
+
+#timeline-count {
+    margin-top: 28px;
+    margin-bottom: 18px;
+
+    font-size: 20px;
+    color: #ffffff;
+}
+
+
+/* Purple divider underneath the controls */
+
+#timeline-count::after {
+    content: "";
+    display: block;
+
+    width: 100%;
+    height: 2px;
+
+    margin-top: 22px;
+
+    background: #9b4dff;
+}
+
+
+/* =========================================
+   TIMELINE ENTRIES
+   ========================================= */
+
+.timeline-entry {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    column-gap: 65px;
+
+    margin-top: 32px;
+    margin-bottom: 55px;
+}
+
+
+/* Poster */
+
+.timeline-poster {
+    width: 360px;
+    height: auto;
+
+    border-radius: 14px;
+
+    display: block;
+}
+
+
+/* Title */
+
+.timeline-title {
+    margin: 8px 0 55px 0;
+
+    font-size: 42px;
+    line-height: 1.1;
+
+    color: #ffffff;
+}
+
+
+/* Information */
+
+.timeline-info {
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.timeline-info p {
+    margin: 0 0 26px 0;
+}
+
+
+/* =========================================
+   OVERVIEW BUTTON
+   ========================================= */
+
+.overview-toggle {
+    padding: 11px 24px;
+
+    background: transparent;
+    color: #b56cff;
+
+    border: 1px solid #9b4dff;
+    border-radius: 12px;
+
+    font-size: 18px;
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease,
+                color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.overview-toggle:hover {
+    background: rgba(155, 77, 255, 0.12);
+    box-shadow: 0 0 12px rgba(155, 77, 255, 0.15);
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 800px) {
+
+    .timeline-search,
+    .timeline-filter {
+        display: flex;
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .timeline-search input,
+    .timeline-filter select {
+        width: 100%;
+    }
+
+    .timeline-entry {
+        display: block;
+    }
+
+    .timeline-poster {
+        width: 100%;
+        max-width: 360px;
+        margin-bottom: 25px;
+    }
+
+    .timeline-title {
+        margin-top: 0;
+        margin-bottom: 30px;
+        font-size: 34px;
+    }
+
+}
+
 /* ============================================================
    20. TABLET
    ============================================================ */
