@@ -15,56 +15,62 @@
 
         <header class="timeline-header">
 
-    <a href="index.html" class="back-link">← Back to Home</a>
+            <a href="index.html" class="back-link">← Back to Home</a>
 
-    <h1>FULL TIMELINE</h1>
+            <h1>FULL TIMELINE</h1>
 
-    <p>
-        Browse the complete Marvel live-action timeline.
-    </p>
+            <p>
+                Browse the complete Marvel live-action timeline.
+            </p>
 
-    <div class="timeline-switch">
-    <button id="chronological-button">🕐 Chronological</button>
-    <button id="release-button">🎬 Release</button>
-</div>
+            <div class="timeline-switch">
+                <button id="chronological-button">🕐 Chronological</button>
+                <button id="release-button">🎬 Release</button>
+            </div>
 
-<div class="timeline-filter">
-    <label for="type-filter">Type</label>
+            <div class="timeline-filter">
 
-    <select id="type-filter">
-        <option value="all">All Types</option>
-        <option value="Film">Film</option>
-        <option value="Series">Series</option>
-        <option value="Special">Special</option>
-        <option value="Short">Short</option>
-        <option value="Short">Series, shorts</option>
-    </select>
-</div>
+                <label for="type-filter">Type</label>
 
-<div class="timeline-filter">
-    <label for="universe-filter">Universe</label>
+                <select id="type-filter">
+                    <option value="all">All Types</option>
+                    <option value="Film">Film</option>
+                    <option value="Series">Series</option>
+                    <option value="Special">Special</option>
+                    <option value="Short">Short</option>
+                    <option value="Series, shorts">Series, shorts</option>
+                </select>
 
-    <select id="universe-filter">
-        <option value="all">All Universes</option>
-        <option value="MCU">MCU</option>
-        <option value="Sony">Sony</option>
-        <option value="Fox">Fox</option>
-        <option value="New Line Cinema">New Line Cinema</option>
-        <option value="Spider-Noir">Spider-Noir</option>
-    </select>
-</div>
+            </div>
 
-</header>
+            <div class="timeline-filter">
+
+                <label for="universe-filter">Universe</label>
+
+                <select id="universe-filter">
+                    <option value="all">All Universes</option>
+                    <option value="MCU">MCU</option>
+                    <option value="Sony">Sony</option>
+                    <option value="Fox">Fox</option>
+                    <option value="New Line Cinema">New Line Cinema</option>
+                    <option value="Spider-Noir">Spider-Noir</option>
+                </select>
+
+            </div>
+
+        </header>
 
         <section class="timeline-content full-timeline-content">
 
-                </section>
+        </section>
 
     </main>
 
     <script>
+
 let currentOrder = 'chronological';
 let currentData = [];
+
 
 function renderTimeline(data) {
 
@@ -81,95 +87,150 @@ function renderTimeline(data) {
         const article = document.createElement('article');
         article.className = 'timeline-entry';
 
+
         const title = document.createElement('h2');
         title.className = 'timeline-title';
         title.textContent = item.title;
 
+
         const content = document.createElement('div');
         content.className = 'timeline-info';
+
 
         const set = document.createElement('p');
         set.textContent = `Set: ${item.chronologicalYear}`;
 
+
         const release = document.createElement('p');
-        release.textContent = `Released: ${String(item.releaseYear).substring(0, 4)}`;
+        release.textContent =
+            `Released: ${String(item.releaseYear).substring(0, 4)}`;
+
 
         const details = document.createElement('p');
-        details.textContent = `${item.type} • ${item.universe} • ${item.earth}`;
+        details.textContent =
+            `${item.type} • ${item.universe} • ${item.earth}`;
+
 
         const rating = document.createElement('p');
         rating.textContent = `⭐ ${item.rating}/5`;
 
+
         const overviewToggle = document.createElement('button');
         overviewToggle.className = 'overview-toggle';
         overviewToggle.textContent = 'Overview';
+
 
         const overview = document.createElement('p');
         overview.className = 'timeline-overview';
         overview.textContent = item.description;
         overview.hidden = true;
 
+
         overviewToggle.addEventListener('click', () => {
+
             overview.hidden = !overview.hidden;
+
         });
+
 
         content.appendChild(set);
         content.appendChild(release);
 
+
         if (item.flashbacks) {
+
             const flashbacks = document.createElement('p');
-            flashbacks.textContent = `Flashbacks: ${item.flashbacks}`;
+            flashbacks.textContent =
+                `Flashbacks: ${item.flashbacks}`;
+
             content.appendChild(flashbacks);
+
         }
 
+
         if (item.flashForwards) {
+
             const flashForwards = document.createElement('p');
-            flashForwards.textContent = `Flash-forwards: ${item.flashForwards}`;
+            flashForwards.textContent =
+                `Flash-forwards: ${item.flashForwards}`;
+
             content.appendChild(flashForwards);
+
         }
+
 
         content.appendChild(details);
         content.appendChild(rating);
         content.appendChild(overviewToggle);
         content.appendChild(overview);
 
+
         if (item.poster) {
+
             const poster = document.createElement('img');
+
             poster.src = item.poster;
             poster.alt = `${item.title} poster`;
             poster.className = 'timeline-poster';
 
             article.appendChild(title);
             article.appendChild(poster);
+
         } else {
+
             article.appendChild(title);
+
         }
 
+
         article.appendChild(content);
+
         timeline.appendChild(article);
+
     });
+
 }
 
 
 function applyFilters() {
 
-    const selectedType = document.getElementById('type-filter').value;
+    const selectedType =
+        document.getElementById('type-filter').value;
+
+    const selectedUniverse =
+        document.getElementById('universe-filter').value;
+
 
     let filteredData = currentData;
 
+
     if (selectedType !== 'all') {
-        filteredData = currentData.filter(item =>
+
+        filteredData = filteredData.filter(item =>
             item.type === selectedType
         );
+
     }
 
+
+    if (selectedUniverse !== 'all') {
+
+        filteredData = filteredData.filter(item =>
+            item.universe === selectedUniverse
+        );
+
+    }
+
+
     renderTimeline(filteredData);
+
 }
 
 
 function loadTimeline(filename) {
 
     fetch(filename)
+
         .then(response => {
 
             if (!response.ok) {
@@ -177,48 +238,80 @@ function loadTimeline(filename) {
             }
 
             return response.json();
+
         })
+
         .then(data => {
 
             if (currentOrder === 'release') {
+
                 data.sort((a, b) =>
-                    new Date(a.releaseYear) - new Date(b.releaseYear)
+                    new Date(a.releaseYear) -
+                    new Date(b.releaseYear)
                 );
+
             }
 
             currentData = data;
 
             applyFilters();
+
         })
+
         .catch(error => {
-            console.error('Timeline loading failed:', error);
+
+            console.error(
+                'Timeline loading failed:',
+                error
+            );
+
         });
+
 }
 
 
-document.getElementById('chronological-button').addEventListener('click', () => {
+document
+    .getElementById('chronological-button')
+    .addEventListener('click', () => {
 
-    currentOrder = 'chronological';
+        currentOrder = 'chronological';
 
-    loadTimeline('timeline.json');
-});
+        loadTimeline('timeline.json');
 
-
-document.getElementById('release-button').addEventListener('click', () => {
-
-    currentOrder = 'release';
-
-    loadTimeline('release.json');
-});
+    });
 
 
-document.getElementById('type-filter').addEventListener('change', () => {
+document
+    .getElementById('release-button')
+    .addEventListener('click', () => {
 
-    applyFilters();
-});
+        currentOrder = 'release';
+
+        loadTimeline('release.json');
+
+    });
+
+
+document
+    .getElementById('type-filter')
+    .addEventListener('change', () => {
+
+        applyFilters();
+
+    });
+
+
+document
+    .getElementById('universe-filter')
+    .addEventListener('change', () => {
+
+        applyFilters();
+
+    });
 
 
 loadTimeline('timeline.json');
+
 </script>
 
 </body>
