@@ -711,7 +711,10 @@ img {
 }
 
 
-/* Full Timeline spacing */
+
+/* ============================================================
+   FULL TIMELINE
+   ============================================================ */
 
 .full-timeline-content {
     margin-top: 40px;
@@ -724,42 +727,33 @@ img {
 }
 
 .timeline-switch button {
-    background: transparent;
-    color: var(--text);
-
-    border: 1px solid var(--border);
-    border-radius: 8px;
-
-    padding: 8px 14px;
-
-    font-size: 1rem;
+    height: 58px;
+    padding: 0 22px;
+    background: #111111;
+    color: #ffffff;
+    border: 1px solid #444444;
+    border-radius: 14px;
+    font-size: 18px;
     font-family: inherit;
-
+    font-weight: 600;
     cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        border-color 0.2s ease;
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .timeline-switch button:hover {
-    background: var(--accent);
-    color: var(--text);
-    border-color: var(--accent);
+    background: #9b4dff;
+    border-color: #9b4dff;
+    box-shadow: 0 0 12px rgba(155, 77, 255, 0.15);
 }
 
-/* =========================================
-   FULL TIMELINE CONTROLS
-   ========================================= */
-
+/* Search and filters */
 .timeline-search,
 .timeline-filter {
     display: inline-flex;
     flex-direction: column;
     gap: 8px;
     margin-top: 20px;
-    margin-right: 18px;
+    margin-right: 14px;
     vertical-align: top;
 }
 
@@ -769,210 +763,123 @@ img {
     color: #ffffff;
 }
 
-
-/* Search box */
+.timeline-search input,
+.timeline-filter select {
+    height: 58px;
+    box-sizing: border-box;
+    padding: 0 18px;
+    background: #111111;
+    color: #ffffff;
+    border: 1px solid #444444;
+    border-radius: 14px;
+    font-size: 18px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
 
 .timeline-search input {
     width: 360px;
-    height: 58px;
-    box-sizing: border-box;
+    cursor: text;
+}
 
-    padding: 0 18px;
-
-    background: #111111;
-    color: #ffffff;
-
-    border: 1px solid #444444;
-    border-radius: 14px;
-
-    font-size: 18px;
-    font-family: inherit;
-
-    outline: none;
-    transition: border-color 0.2s ease,
-                box-shadow 0.2s ease;
+.timeline-filter select {
+    width: 270px;
+    cursor: pointer;
 }
 
 .timeline-search input::placeholder {
     color: #999999;
 }
 
-.timeline-search input:focus {
-    border-color: #9b4dff;
-    box-shadow: 0 0 0 2px rgba(155, 77, 255, 0.15);
-}
-
-
-/* Dropdown filters */
-
-.timeline-filter select {
-    width: 270px;
-    height: 58px;
-    box-sizing: border-box;
-
-    padding: 0 18px;
-
-    background: #111111;
-    color: #ffffff;
-
-    border: 1px solid #444444;
-    border-radius: 14px;
-
-    font-size: 18px;
-    font-family: inherit;
-
-    outline: none;
-    cursor: pointer;
-
-    transition: border-color 0.2s ease,
-                box-shadow 0.2s ease;
-}
-
+.timeline-search input:focus,
 .timeline-filter select:focus {
     border-color: #9b4dff;
     box-shadow: 0 0 0 2px rgba(155, 77, 255, 0.15);
 }
 
-
 /* Results count */
-
 #timeline-count {
     margin-top: 28px;
     margin-bottom: 18px;
-
     font-size: 20px;
     color: #ffffff;
 }
-
-
-/* Purple divider underneath the controls */
 
 #timeline-count::after {
     content: "";
     display: block;
-
     width: 100%;
     height: 2px;
-
     margin-top: 22px;
-
     background: #9b4dff;
 }
 
-
-/* =========================================
-   TIMELINE ENTRIES
-   ========================================= */
-
+/* Desktop timeline */
 .timeline-entry {
+    width: 100%;
     display: grid;
-    grid-template-columns: 360px 1fr;
+    grid-template-columns: 360px minmax(0, 1fr);
     grid-template-rows: auto 1fr;
     column-gap: 65px;
-
     margin-top: 32px;
     margin-bottom: 55px;
+    align-items: start;
 }
 
-
-/* Poster sits on the left */
-
-.timeline-poster {
+.timeline-entry .timeline-poster {
     grid-column: 1;
     grid-row: 1 / 3;
-
     width: 360px;
+    max-width: 360px;
     height: auto;
-
-    border-radius: 14px;
-
     display: block;
+    margin: 0;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    object-fit: cover;
 }
-
-
-/* Title sits at the top-right */
 
 .timeline-title {
     grid-column: 2;
     grid-row: 1;
-
-    margin: 8px 0 55px 0;
-
+    margin: 8px 0 55px;
     font-size: 42px;
     line-height: 1.1;
-
+    font-weight: 700;
     color: #ffffff;
 }
-
-
-/* Information sits underneath the title */
 
 .timeline-info {
     grid-column: 2;
     grid-row: 2;
-
-    font-size: 20px;
-    color: #ffffff;
-}
-
-
-/* Poster */
-
-.timeline-poster {
-    width: 360px;
-    height: auto;
-
-    border-radius: 14px;
-
-    display: block;
-}
-
-
-/* Title */
-
-.timeline-title {
-    margin: 8px 0 55px 0;
-
-    font-size: 42px;
-    line-height: 1.1;
-
-    color: #ffffff;
-}
-
-
-/* Information */
-
-.timeline-info {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
     font-size: 20px;
     color: #ffffff;
 }
 
 .timeline-info p {
-    margin: 0 0 26px 0;
+    margin: 0 0 26px;
+    line-height: 1.45;
 }
 
-
-/* =========================================
-   OVERVIEW BUTTON
-   ========================================= */
-
+/* Overview */
 .overview-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     padding: 11px 24px;
-
+    margin-top: 2px;
     background: transparent;
     color: #b56cff;
-
     border: 1px solid #9b4dff;
     border-radius: 12px;
-
     font-size: 18px;
     font-family: inherit;
-
     cursor: pointer;
-
-    transition: background 0.2s ease,
-                color 0.2s ease,
-                box-shadow 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .overview-toggle:hover {
@@ -980,12 +887,87 @@ img {
     box-shadow: 0 0 12px rgba(155, 77, 255, 0.15);
 }
 
+.overview-toggle:active {
+    transform: scale(0.97);
+}
 
-/* =========================================
-   MOBILE
-   ========================================= */
+.timeline-overview,
+.overview,
+.overview-content,
+.timeline-description {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
 
-@media (max-width: 800px) {
+.timeline-overview[hidden],
+.overview[hidden],
+.overview-content[hidden],
+.timeline-description[hidden] {
+    display: none;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    main {
+        width: min(100% - 40px, 760px);
+        padding: 55px 0 80px;
+    }
+
+    .timeline-entry {
+        grid-template-columns: 190px minmax(0, 1fr);
+        column-gap: 35px;
+    }
+
+    .timeline-entry .timeline-poster {
+        width: 190px;
+        max-width: 190px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .site-header {
+        padding: 18px 5%;
+    }
+
+    .site-logo {
+        font-size: 0.9rem;
+    }
+
+    .admin-link {
+        font-size: 0.8rem;
+        padding: 7px 11px;
+    }
+
+    main {
+        width: 100%;
+        padding: 55px 7% 80px;
+    }
+
+    .landing-intro {
+        width: 100%;
+    }
+
+    .landing-intro h1 {
+        font-size: clamp(2.2rem, 12vw, 4rem);
+    }
+
+    .intro-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .order-selection,
+    .destination-section {
+        margin-top: 60px;
+    }
+
+    .order-options,
+    .destination-grid {
+        grid-template-columns: 1fr;
+    }
 
     .timeline-search,
     .timeline-filter {
@@ -1000,280 +982,61 @@ img {
     }
 
     .timeline-entry {
-        display: block;
-    }
-
-    .timeline-poster {
-        width: 100%;
-        max-width: 360px;
-        margin-bottom: 25px;
-    }
-
-    .timeline-title {
-        margin-top: 0;
-        margin-bottom: 30px;
-        font-size: 34px;
-    }
-
-}
-
-/* ============================================================
-   20. TABLET
-   ============================================================ */
-
-@media (max-width: 900px) {
-
-    main {
-        width:
-            min(
-                100% - 40px,
-                760px
-            );
-
-        padding:
-            55px
-            0
-            80px;
-    }
-
-    .timeline-entry {
-        grid-template-columns:
-            190px
-            minmax(0, 1fr);
-
-        column-gap: 35px;
-    }
-
-    .timeline-entry .timeline-poster {
-        width: 190px;
-        max-width: 190px;
-    }
-
-}
-
-
-/* ============================================================
-   21. MOBILE
-   ============================================================ */
-
-@media (max-width: 700px) {
-
-    /*
-       MOBILE IS COMPLETELY SEPARATE FROM DESKTOP.
-
-       We intentionally destroy the desktop two-column
-       structure here instead of trying to shrink it.
-    */
-
-    .site-header {
-        padding:
-            18px
-            5%;
-    }
-
-    .site-logo {
-        font-size: 0.9rem;
-    }
-
-    .admin-link {
-        font-size: 0.8rem;
-
-        padding:
-            7px
-            11px;
-    }
-
-
-    /* ---------------- MAIN ---------------- */
-
-    main {
-        width: 100%;
-
-        padding:
-            55px
-            7%
-            80px;
-    }
-
-
-    /* ---------------- INTRO ---------------- */
-
-    .landing-intro {
-        width: 100%;
-    }
-
-    .landing-intro h1 {
-        font-size:
-            clamp(
-                2.2rem,
-                12vw,
-                4rem
-            );
-    }
-
-    .intro-text {
-        font-size: 1rem;
-
-        line-height: 1.6;
-    }
-
-
-    /* ---------------- SECTIONS ---------------- */
-
-    .order-selection,
-    .destination-section {
-        margin-top: 60px;
-    }
-
-
-    /* ---------------- CARDS ---------------- */
-
-    .order-options,
-    .destination-grid {
-        grid-template-columns: 1fr;
-    }
-
-
-    /* ---------------- TIMELINE ---------------- */
-
-    .timeline-entry {
         display: flex;
-
         flex-direction: column;
-
         width: 100%;
-
         gap: 0;
-
         margin-bottom: 90px;
     }
 
-
-    /*
-       TITLE FIRST
-    */
-
     .timeline-title {
         order: 1;
-
         width: 100%;
-
-        margin:
-            0
-            0
-            24px;
-
-        font-size:
-            clamp(
-                1.6rem,
-                7vw,
-                2rem
-            );
-
+        margin: 0 0 24px;
+        font-size: clamp(1.6rem, 7vw, 2rem);
         line-height: 1.1;
     }
 
-
-    /*
-       POSTER SECOND
-    */
-
     .timeline-entry .timeline-poster {
         order: 2;
-
-        width: min(
-            260px,
-            100%
-        );
-
+        width: min(260px, 100%);
         max-width: 260px;
-
         height: auto;
-
-        margin:
-            0
-            auto
-            28px;
+        margin: 0 auto 28px;
     }
-
-
-    /*
-       INFO THIRD
-    */
 
     .timeline-entry .timeline-info {
         order: 3;
-
         width: 100%;
-
         margin: 0;
     }
 
-
-    /*
-       Keep the information readable on phones.
-    */
-
     .timeline-info p {
         font-size: 1rem;
-
         line-height: 1.5;
-
         margin-bottom: 14px;
     }
-
-
-    /*
-       Overview stays underneath the button when opened.
-    */
-
-    .overview-toggle {
-        margin-top: 2px;
-    }
-
-
-    /*
-       Make sure nothing from the desktop grid
-       can create horizontal overflow.
-    */
 
     .timeline-entry,
     .timeline-title,
     .timeline-info {
         min-width: 0;
-
         max-width: 100%;
     }
-
 }
 
-
-/* ============================================================
-   22. SMALL MOBILE
-   ============================================================ */
-
+/* Small mobile */
 @media (max-width: 450px) {
-
     main {
-        padding:
-            45px
-            6%
-            70px;
+        padding: 45px 6% 70px;
     }
 
     .site-header {
-        padding:
-            16px
-            6%;
+        padding: 16px 6%;
     }
 
     .landing-intro h1 {
-        font-size:
-            clamp(
-                2rem,
-                12vw,
-                3.2rem
-            );
+        font-size: clamp(2rem, 12vw, 3.2rem);
     }
 
     .timeline-entry {
@@ -1288,16 +1051,10 @@ img {
     .timeline-title {
         font-size: 1.55rem;
     }
-
 }
 
-
-/* ============================================================
-   23. VERY SMALL SCREENS
-   ============================================================ */
-
+/* Very small screens */
 @media (max-width: 360px) {
-
     main {
         padding-left: 5%;
         padding-right: 5%;
@@ -1310,108 +1067,21 @@ img {
     .timeline-title {
         font-size: 1.45rem;
     }
-
 }
 
-
-/* ============================================================
-   24. ACCESSIBILITY
-   ============================================================ */
-
+/* Accessibility */
 button:focus-visible,
 a:focus-visible {
-    outline:
-        2px solid
-        var(--accent);
-
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
 }
 
-
-/* ============================================================
-   25. REDUCE MOTION
-   ============================================================ */
-
 @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {
         scroll-behavior: auto !important;
-
         transition: none !important;
-
         animation: none !important;
     }
-
-}
-
-
-/* =========================================
-   FULL TIMELINE - FINAL DESKTOP LAYOUT
-   ========================================= */
-
-@media (min-width: 801px) {
-
-    .timeline-page .timeline-entry {
-        width: 100%;
-        display: grid;
-
-        grid-template-columns: 360px minmax(0, 1fr);
-        grid-template-rows: auto 1fr;
-
-        column-gap: 65px;
-
-        margin-top: 32px;
-        margin-bottom: 55px;
-    }
-
-
-    /* Poster - left side */
-
-    .timeline-page .timeline-entry .timeline-poster {
-        grid-column: 1;
-        grid-row: 1 / 3;
-
-        width: 360px;
-        max-width: 360px;
-        height: auto;
-
-        margin: 0;
-
-        border-radius: 14px;
-        display: block;
-
-        object-fit: cover;
-    }
-
-
-    /* Title - top right */
-
-    .timeline-page .timeline-entry .timeline-title {
-        grid-column: 2;
-        grid-row: 1;
-
-        margin: 8px 0 55px 0;
-
-        font-size: 42px;
-        line-height: 1.1;
-
-        color: #ffffff;
-    }
-
-
-    /* Information - underneath title */
-
-    .timeline-page .timeline-entry .timeline-info {
-        grid-column: 2;
-        grid-row: 2;
-
-        width: 100%;
-        margin: 0;
-
-        font-size: 20px;
-        color: #ffffff;
-    }
-
 }
