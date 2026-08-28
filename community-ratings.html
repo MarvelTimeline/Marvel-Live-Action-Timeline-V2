@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Community Ratings | Marvel Live-Action Timeline</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <main class="ratings-page">
+
+        <header class="ratings-header">
+
+            <a href="index.html" class="back-link">← Back to Home</a>
+
+            <h1>COMMUNITY RATINGS</h1>
+
+            <p>
+                See how the Marvel community rates the universe.
+            </p>
+
+        </header>
+
+        <section class="ratings-summary">
+
+            <div class="rating-stat">
+                <span id="community-average-rating">—</span>
+                <small>Community Average</small>
+            </div>
+
+            <div class="rating-stat">
+                <span id="community-rated-count">—</span>
+                <small>Rated</small>
+            </div>
+
+            <div class="rating-stat">
+                <span id="community-highest-rating">—</span>
+                <small>Highest Rated</small>
+            </div>
+
+        </section>
+
+        <section class="ratings-controls">
+
+            <div class="ratings-search">
+
+                <label for="community-search">Search</label>
+
+                <input
+                    type="text"
+                    id="community-search"
+                    placeholder="Search community ratings..."
+                >
+
+            </div>
+
+            <div class="ratings-filter">
+
+                <label for="community-type-filter">Type</label>
+
+                <select id="community-type-filter">
+                    <option value="all">All Types</option>
+                    <option value="Film">Film</option>
+                    <option value="Series">Series</option>
+                    <option value="Special">Special</option>
+                    <option value="Short">Short</option>
+                </select>
+
+            </div>
+
+            <div class="ratings-sort">
+
+                <label for="community-sort">Sort</label>
+
+                <select id="community-sort">
+                    <option value="highest">Highest Rated</option>
+                    <option value="lowest">Lowest Rated</option>
+                    <option value="chronological">Chronological</option>
+                    <option value="release">Release Date</option>
+                    <option value="az">Title A–Z</option>
+                    <option value="za">Title Z–A</option>
+                </select>
+
+            </div>
+
+        </section>
+
+        <section class="ratings-content" id="community-ratings-content">
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+let communityRatingsData = [];
+
+
+function getRatingValue(rating) {
+
+    const value = parseFloat(rating);
+
+    return Number.isNaN(value) ? null : value;
+
+}
+
+
+function createStars(rating) {
+
+    const value = getRatingValue(rating);
+
+    if (value === null) {
+        return '—';
+    }
+
+    const fullStars = Math.floor(value);
+    const halfStar = value % 1 !== 0;
+
+    let stars = '★'.repeat(fullStars);
+
+    if (halfStar) {
+        stars += '½';
+    }
+
+    return stars;
+
+}
+
+
+function renderCommunityRatings(data) {
+
+    const container =
+        document.getElementById('community-ratings-content');
+
+    container.innerHTML = '';
+
+
+    if (data.length === 0) {
+
+        const empty = document.createElement('p');
+
+        empty.textContent =
+            'No community ratings found.';
+
+        empty.className = 'ratings-empty';
+
+        container.appendChild(empty);
+
+        return;
+
+    }
+
+
+    data.forEach(item => {
+
+        const card = document.createElement('article');
+
+        card.className = 'rating-card';
+
+
+        const poster = document.createElement('img');
+
+        poster.src = item.poster;
+
+        poster.alt =
+            `${item.title} poster`;
+
+        poster.className =
+            'rating-poster';
+
+
+        const details =
+            document.createElement('div');
+
+        details.className =
+            'rating-details';
+
+
+        const title =
+            document.createElement('h2');
+
+        title.textContent =
+            item.title;
+
+
+        const metadata =
+            document.createElement('p');
+
+
+        const type =
+            Array.isArray(item.type)
+                ? item.type.join(' / ')
+                : item.type;
+
+
+        const universe =
+            Array.isArray(item.universe)
+                ? item.universe.join(' / ')
+                : item.universe;
+
+
+        metadata.textContent =
+            `${type} • ${universe}`;
+
+
+        const rating =
+            document.createElement('div');
+
+        rating.className =
+            'rating-display';
+
+
+        const stars =
+            document.createElement('span');
+
+        stars.className =
+            'rating-stars';
+
+        stars.textContent =
+            createStars(item.communityRating);
+
+
+        const number =
+            document.createElement('span');
+
+        number.className =
+            'rating-number';
+
+
+        const value =
+            getRatingValue(item.communityRating);
+
+
+        number.textContent =
+            value === null
+                ? 'No Rating'
+                : `${value}/5`;
+
+
+        rating.appendChild(stars);
+        rating.appendChild(number);
+
+
+        details.appendChild(title);
+        details.appendChild(metadata);
+        details.appendChild(rating);
+
+
+        card.appendChild(poster);
+        card.appendChild(details);
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+function updateCommunitySummary(data) {
+
+    const rated =
+        data
+            .map(item =>
+                getRatingValue(item.communityRating)
+            )
+            .filter(value =>
+                value !== null
+            );
+
+
+    const average =
+        rated.length
+            ? rated.reduce(
+                (sum, value) => sum + value,
+                0
+            ) / rated.length
+            : null;
+
+
+    const highest =
+        rated.length
+            ? Math.max(...rated)
+            : null;
+
+
+    document
+        .getElementById('community-average-rating')
+        .textContent =
+            average === null
+                ? '—'
+                : `${average.toFixed(1)}/5`;
+
+
+    document
+        .getElementById('community-rated-count')
+        .textContent =
+            rated.length;
+
+
+    document
+        .getElementById('community-highest-rating')
+        .textContent =
+            highest === null
+                ? '—'
+                : `${highest}/5`;
+
+}
+
+
+function applyCommunityFilters() {
+
+    const searchTerm =
+        document
+            .getElementById('community-search')
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    const selectedType =
+        document
+            .getElementById('community-type-filter')
+            .value;
+
+
+    const selectedSort =
+        document
+            .getElementById('community-sort')
+            .value;
+
+
+    let filteredData =
+        communityRatingsData.filter(item => {
+
+            const matchesSearch =
+                item.title
+                    .toLowerCase()
+                    .includes(searchTerm);
+
+
+            const matchesType =
+                selectedType === 'all'
+                    ? true
+                    : Array.isArray(item.type)
+                        ? item.type.includes(selectedType)
+                        : item.type === selectedType;
+
+
+            return matchesSearch && matchesType;
+
+        });
+
+
+    filteredData.sort((a, b) => {
+
+        const ratingA =
+            getRatingValue(a.communityRating);
+
+        const ratingB =
+            getRatingValue(b.communityRating);
+
+
+        if (selectedSort === 'highest') {
+
+            return (ratingB ?? -1) -
+                   (ratingA ?? -1);
+
+        }
+
+
+        if (selectedSort === 'lowest') {
+
+            return (ratingA ?? 999) -
+                   (ratingB ?? 999);
+
+        }
+
+
+        if (selectedSort === 'chronological') {
+
+            return String(a.chronologicalYear)
+                .localeCompare(
+                    String(b.chronologicalYear)
+                );
+
+        }
+
+
+        if (selectedSort === 'release') {
+
+            return new Date(a.releaseYear) -
+                   new Date(b.releaseYear);
+
+        }
+
+
+        if (selectedSort === 'az') {
+
+            return a.title.localeCompare(b.title);
+
+        }
+
+
+        if (selectedSort === 'za') {
+
+            return b.title.localeCompare(a.title);
+
+        }
+
+
+        return 0;
+
+    });
+
+
+    renderCommunityRatings(filteredData);
+
+}
+
+
+function loadCommunityRatings() {
+
+    fetch('timeline.json')
+
+        .then(response => {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    'Could not load timeline.json'
+                );
+
+            }
+
+            return response.json();
+
+        })
+
+        .then(data => {
+
+            communityRatingsData = data;
+
+            updateCommunitySummary(
+                communityRatingsData
+            );
+
+            applyCommunityFilters();
+
+        })
+
+        .catch(error => {
+
+            console.error(
+                'Community ratings loading failed:',
+                error
+            );
+
+        });
+
+}
+
+
+document
+    .getElementById('community-search')
+    .addEventListener(
+        'input',
+        applyCommunityFilters
+    );
+
+
+document
+    .getElementById('community-type-filter')
+    .addEventListener(
+        'change',
+        applyCommunityFilters
+    );
+
+
+document
+    .getElementById('community-sort')
+    .addEventListener(
+        'change',
+        applyCommunityFilters
+    );
+
+
+loadCommunityRatings();
+
+</script>
+
+</body>
+</html>
