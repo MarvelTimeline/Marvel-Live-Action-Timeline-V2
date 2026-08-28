@@ -467,7 +467,7 @@ main {
     width: 100%;
     display: grid;
 
-    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-columns: 360px minmax(0, 1fr);
     grid-template-rows: auto auto;
 
     column-gap: 55px;
@@ -510,8 +510,8 @@ main {
     grid-column: 1;
     grid-row: 1 / span 2;
 
-    width: 220px;
-    max-width: 220px;
+    width: 360px;
+    max-width: 360px;
 
     height: auto;
 
