@@ -953,20 +953,16 @@
                      */
 
                     if (
-                        selectedSort ===
-                        'chronological'
-                    ) {
+    selectedSort ===
+    'chronological'
+) {
 
-                        return (
-                            chronologicalValue(
-                                a.chronologicalYear
-                            ) -
-                            chronologicalValue(
-                                b.chronologicalYear
-                            )
-                        );
+    return (
+        (a.timelineNumber ?? 999999) -
+        (b.timelineNumber ?? 999999)
+    );
 
-                    }
+}
 
 
                     /*
