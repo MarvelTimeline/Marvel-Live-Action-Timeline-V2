@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,9 @@
 
         <header class="ratings-header">
 
-            <a href="index.html" class="back-link">← Back to Home</a>
+            <a href="index.html" class="back-link">
+                ← Back to Home
+            </a>
 
             <h1>COMMUNITY RATINGS</h1>
 
@@ -24,6 +27,7 @@
             </p>
 
         </header>
+
 
         <section class="ratings-summary">
 
@@ -44,11 +48,14 @@
 
         </section>
 
+
         <section class="ratings-controls">
 
             <div class="ratings-search">
 
-                <label for="community-search">Search</label>
+                <label for="community-search">
+                    Search
+                </label>
 
                 <input
                     type="text"
@@ -58,441 +65,1217 @@
 
             </div>
 
+
             <div class="ratings-filter">
 
-                <label for="community-type-filter">Type</label>
+                <label for="community-type-filter">
+                    Type
+                </label>
 
                 <select id="community-type-filter">
-                    <option value="all">All Types</option>
-                    <option value="Film">Film</option>
-                    <option value="Series">Series</option>
-                    <option value="Special">Special</option>
-                    <option value="Short">Short</option>
+
+                    <option value="all">
+                        All Types
+                    </option>
+
+                    <option value="Film">
+                        Film
+                    </option>
+
+                    <option value="Series">
+                        Series
+                    </option>
+
+                    <option value="Special">
+                        Special
+                    </option>
+
+                    <option value="Short">
+                        Short
+                    </option>
+
                 </select>
 
             </div>
+
 
             <div class="ratings-sort">
 
-                <label for="community-sort">Sort</label>
+                <label for="community-sort">
+                    Sort
+                </label>
 
                 <select id="community-sort">
-                    <option value="highest">Highest Rated</option>
-                    <option value="lowest">Lowest Rated</option>
-                    <option value="chronological">Chronological</option>
-                    <option value="release">Release Date</option>
-                    <option value="az">Title A–Z</option>
-                    <option value="za">Title Z–A</option>
+
+                    <option value="highest">
+                        Highest Rated
+                    </option>
+
+                    <option value="lowest">
+                        Lowest Rated
+                    </option>
+
+                    <option value="chronological">
+                        Chronological
+                    </option>
+
+                    <option value="release">
+                        Release Date
+                    </option>
+
+                    <option value="az">
+                        Title A–Z
+                    </option>
+
+                    <option value="za">
+                        Title Z–A
+                    </option>
+
                 </select>
 
             </div>
 
         </section>
 
-        <section class="ratings-content" id="community-ratings-content">
 
-        </section>
+        <section
+            class="ratings-content"
+            id="community-ratings-content"
+        ></section>
 
     </main>
 
 
     <script>
 
-let communityRatingsData = [];
-
-
-function getRatingValue(rating) {
-
-    const value = parseFloat(rating);
-
-    return Number.isNaN(value) ? null : value;
-
-}
-
-
-function createStars(rating) {
-
-    const value = getRatingValue(rating);
-
-    if (value === null) {
-        return '—';
-    }
-
-    const fullStars = Math.floor(value);
-    const halfStar = value % 1 !== 0;
-
-    let stars = '★'.repeat(fullStars);
-
-    if (halfStar) {
-        stars += '½';
-    }
-
-    return stars;
-
-}
-
-
-function renderCommunityRatings(data) {
-
-    const container =
-        document.getElementById('community-ratings-content');
-
-    container.innerHTML = '';
-
-
-    if (data.length === 0) {
-
-        const empty = document.createElement('p');
-
-        empty.textContent =
-            'No community ratings found.';
-
-        empty.className = 'ratings-empty';
-
-        container.appendChild(empty);
-
-        return;
-
-    }
-
-
-    data.forEach(item => {
-
-        const card = document.createElement('article');
-
-        card.className = 'rating-card';
-
-
-        const poster = document.createElement('img');
-
-        poster.src = item.poster;
-
-        poster.alt =
-            `${item.title} poster`;
-
-        poster.className =
-            'rating-poster';
-
-
-        const details =
-            document.createElement('div');
-
-        details.className =
-            'rating-details';
-
-
-        const title =
-            document.createElement('h2');
-
-        title.textContent =
-            item.title;
-
-
-        const metadata =
-            document.createElement('p');
-
-
-        const type =
-            Array.isArray(item.type)
-                ? item.type.join(' / ')
-                : item.type;
-
-
-        const universe =
-            Array.isArray(item.universe)
-                ? item.universe.join(' / ')
-                : item.universe;
-
-
-        metadata.textContent =
-            `${type} • ${universe}`;
-
-
-        const rating =
-            document.createElement('div');
-
-        rating.className =
-            'rating-display';
-
-
-        const stars =
-            document.createElement('span');
-
-        stars.className =
-            'rating-stars';
-
-        stars.textContent =
-            createStars(item.communityRating);
-
-
-        const number =
-            document.createElement('span');
-
-        number.className =
-            'rating-number';
-
-
-        const value =
-            getRatingValue(item.communityRating);
-
-
-        number.textContent =
-            value === null
-                ? 'No Rating'
-                : `${value}/5`;
-
-
-        rating.appendChild(stars);
-        rating.appendChild(number);
-
-
-        details.appendChild(title);
-        details.appendChild(metadata);
-        details.appendChild(rating);
-
-
-        card.appendChild(poster);
-        card.appendChild(details);
-
-
-        container.appendChild(card);
-
-    });
-
-}
-
-
-function updateCommunitySummary(data) {
-
-    const rated =
-        data
-            .map(item =>
-                getRatingValue(item.communityRating)
-            )
-            .filter(value =>
-                value !== null
-            );
-
-
-    const average =
-        rated.length
-            ? rated.reduce(
-                (sum, value) => sum + value,
-                0
-            ) / rated.length
-            : null;
-
-
-    const highest =
-        rated.length
-            ? Math.max(...rated)
-            : null;
-
-
-    document
-        .getElementById('community-average-rating')
-        .textContent =
-            average === null
-                ? '—'
-                : `${average.toFixed(1)}/5`;
-
-
-    document
-        .getElementById('community-rated-count')
-        .textContent =
-            rated.length;
-
-
-    document
-        .getElementById('community-highest-rating')
-        .textContent =
-            highest === null
-                ? '—'
-                : `${highest}/5`;
-
-}
-
-
-function applyCommunityFilters() {
-
-    const searchTerm =
-        document
-            .getElementById('community-search')
-            .value
-            .toLowerCase()
-            .trim();
-
-
-    const selectedType =
-        document
-            .getElementById('community-type-filter')
-            .value;
-
-
-    const selectedSort =
-        document
-            .getElementById('community-sort')
-            .value;
-
-
-    let filteredData =
-        communityRatingsData.filter(item => {
-
-            const matchesSearch =
-                item.title
-                    .toLowerCase()
-                    .includes(searchTerm);
-
-
-            const matchesType =
-                selectedType === 'all'
-                    ? true
-                    : Array.isArray(item.type)
-                        ? item.type.includes(selectedType)
-                        : item.type === selectedType;
-
-
-            return matchesSearch && matchesType;
-
-        });
-
-
-    filteredData.sort((a, b) => {
-
-        const ratingA =
-            getRatingValue(a.communityRating);
-
-        const ratingB =
-            getRatingValue(b.communityRating);
-
-
-        if (selectedSort === 'highest') {
-
-            return (ratingB ?? -1) -
-                   (ratingA ?? -1);
+        /*
+         * COMMUNITY RATINGS
+         * -----------------
+         * community-ratings.json contains:
+         * - title
+         * - tmdbTitle
+         * - tmdbId
+         * - mediaType
+         * - season
+         * - communityRating
+         * - voteCount
+         *
+         * timeline.json contains:
+         * - poster
+         * - type
+         * - universe
+         * - earth
+         * - chronologicalYear
+         * - releaseYear
+         *
+         * This page combines the two datasets.
+         */
+
+
+        let communityRatingsData = [];
+
+
+        /*
+         * Convert a rating into a number.
+         */
+
+        function getRatingValue(rating) {
+
+            const value = parseFloat(rating);
+
+            return Number.isNaN(value)
+                ? null
+                : value;
 
         }
 
 
-        if (selectedSort === 'lowest') {
+        /*
+         * Create a 10-star display.
+         *
+         * Example:
+         * 8.2 = ★★★★★★★★½
+         */
 
-            return (ratingA ?? 999) -
-                   (ratingB ?? 999);
+        function createStars(rating) {
 
-        }
+            const value = getRatingValue(rating);
+
+            if (value === null) {
+                return '—';
+            }
 
 
-        if (selectedSort === 'chronological') {
+            const fullStars =
+                Math.floor(value);
 
-            return String(a.chronologicalYear)
-                .localeCompare(
-                    String(b.chronologicalYear)
+
+            const hasHalfStar =
+                value % 1 >= 0.25;
+
+
+            let stars =
+                '★'.repeat(
+                    Math.min(fullStars, 10)
                 );
 
-        }
 
+            if (
+                hasHalfStar &&
+                fullStars < 10
+            ) {
 
-        if (selectedSort === 'release') {
-
-            return new Date(a.releaseYear) -
-                   new Date(b.releaseYear);
-
-        }
-
-
-        if (selectedSort === 'az') {
-
-            return a.title.localeCompare(b.title);
-
-        }
-
-
-        if (selectedSort === 'za') {
-
-            return b.title.localeCompare(a.title);
-
-        }
-
-
-        return 0;
-
-    });
-
-
-    renderCommunityRatings(filteredData);
-
-}
-
-
-function loadCommunityRatings() {
-
-    fetch('community-ratings.json')
-
-        .then(response => {
-
-            if (!response.ok) {
-
-                throw new Error(
-                    'Could not load timeline.json'
-                );
+                stars += '½';
 
             }
 
-            return response.json();
 
-        })
+            return stars;
 
-        .then(data => {
+        }
 
-            communityRatingsData = data;
 
-            updateCommunitySummary(
-                communityRatingsData
+        /*
+         * Normalise titles so small differences don't
+         * prevent timeline data from matching.
+         */
+
+        function normaliseTitle(title) {
+
+            if (!title) {
+                return '';
+            }
+
+
+            return title
+
+                .toLowerCase()
+
+                .replace(/…/g, '...')
+
+                .replace(/[’‘']/g, '')
+
+                .replace(/[–—-]/g, ' ')
+
+                .replace(/[^a-z0-9\s]/g, ' ')
+
+                .replace(/\s+/g, ' ')
+
+                .trim();
+
+        }
+
+
+        /*
+         * Find the matching timeline item.
+         *
+         * Most entries match directly by title.
+         *
+         * A few Marvel titles have slightly different
+         * punctuation/naming between the datasets, so
+         * normalise both sides before comparing.
+         */
+
+        function findTimelineItem(
+            communityItem,
+            timelineData
+        ) {
+
+            const communityTitle =
+                normaliseTitle(
+                    communityItem.title
+                );
+
+
+            /*
+             * First try an exact normalised title.
+             */
+
+            const exactMatch =
+                timelineData.find(
+                    timelineItem =>
+                        normaliseTitle(
+                            timelineItem.title
+                        ) === communityTitle
+                );
+
+
+            if (exactMatch) {
+                return exactMatch;
+            }
+
+
+            /*
+             * Handle common naming differences.
+             */
+
+            const aliases = {
+
+                'the avengers endgame':
+                    'avengers endgame',
+
+                'the avengers infinity war':
+                    'avengers infinity war',
+
+                'what if':
+                    'what if',
+
+                'ant man and the wasp quantum mania':
+                    'ant man and the wasp quantumania',
+
+                'guardians of the galaxy holiday special':
+                    'the guardians of the galaxy holiday special'
+
+            };
+
+
+            const alias =
+                aliases[communityTitle];
+
+
+            if (alias) {
+
+                const aliasMatch =
+                    timelineData.find(
+                        timelineItem =>
+                            normaliseTitle(
+                                timelineItem.title
+                            ) === alias
+                    );
+
+
+                if (aliasMatch) {
+                    return aliasMatch;
+                }
+
+            }
+
+
+            /*
+             * If no exact match exists, compare the
+             * important words in the title.
+             */
+
+            const communityWords =
+                communityTitle
+                    .split(' ')
+                    .filter(word => word.length > 2);
+
+
+            let bestMatch = null;
+            let bestScore = 0;
+
+
+            timelineData.forEach(
+                timelineItem => {
+
+                    const timelineTitle =
+                        normaliseTitle(
+                            timelineItem.title
+                        );
+
+
+                    const timelineWords =
+                        timelineTitle
+                            .split(' ')
+                            .filter(
+                                word =>
+                                    word.length > 2
+                            );
+
+
+                    if (
+                        communityWords.length === 0 ||
+                        timelineWords.length === 0
+                    ) {
+                        return;
+                    }
+
+
+                    let matches = 0;
+
+
+                    communityWords.forEach(
+                        word => {
+
+                            if (
+                                timelineWords.includes(
+                                    word
+                                )
+                            ) {
+
+                                matches++;
+
+                            }
+
+                        }
+                    );
+
+
+                    const score =
+                        matches /
+                        Math.max(
+                            communityWords.length,
+                            timelineWords.length
+                        );
+
+
+                    if (score > bestScore) {
+
+                        bestScore = score;
+                        bestMatch = timelineItem;
+
+                    }
+
+                }
             );
 
-            applyCommunityFilters();
 
-        })
+            /*
+             * Only accept a fuzzy match when it is
+             * reasonably strong.
+             */
 
-        .catch(error => {
+            if (bestScore >= 0.75) {
+                return bestMatch;
+            }
 
-            console.error(
-                'Community ratings loading failed:',
-                error
+
+            return null;
+
+        }
+
+
+        /*
+         * Render the rating cards.
+         */
+
+        function renderCommunityRatings(data) {
+
+            const container =
+                document.getElementById(
+                    'community-ratings-content'
+                );
+
+
+            container.innerHTML = '';
+
+
+            if (data.length === 0) {
+
+                const empty =
+                    document.createElement('p');
+
+
+                empty.textContent =
+                    'No community ratings found.';
+
+
+                empty.className =
+                    'ratings-empty';
+
+
+                container.appendChild(empty);
+
+                return;
+
+            }
+
+
+            data.forEach(item => {
+
+                const card =
+                    document.createElement(
+                        'article'
+                    );
+
+
+                card.className =
+                    'rating-card';
+
+
+                /*
+                 * Poster
+                 */
+
+                const poster =
+                    document.createElement('img');
+
+
+                if (item.poster) {
+
+                    poster.src =
+                        item.poster;
+
+                } else {
+
+                    poster.alt =
+                        `${item.title} poster`;
+
+                }
+
+
+                poster.alt =
+                    `${item.title} poster`;
+
+
+                poster.className =
+                    'rating-poster';
+
+
+                /*
+                 * If an image fails, don't leave
+                 * a broken-image icon hanging around.
+                 */
+
+                poster.onerror = function () {
+
+                    this.style.visibility =
+                        'hidden';
+
+                };
+
+
+                /*
+                 * Details container
+                 */
+
+                const details =
+                    document.createElement('div');
+
+
+                details.className =
+                    'rating-details';
+
+
+                /*
+                 * Title
+                 */
+
+                const title =
+                    document.createElement('h2');
+
+
+                title.textContent =
+                    item.title;
+
+
+                /*
+                 * Metadata
+                 */
+
+                const metadata =
+                    document.createElement('p');
+
+
+                const type =
+                    Array.isArray(item.type)
+                        ? item.type.join(' / ')
+                        : (
+                            item.type ||
+                            'Unknown'
+                        );
+
+
+                const universe =
+                    Array.isArray(item.universe)
+                        ? item.universe.join(' / ')
+                        : (
+                            item.universe ||
+                            'Unknown'
+                        );
+
+
+                metadata.textContent =
+                    `${type} • ${universe}`;
+
+
+                /*
+                 * Rating container
+                 */
+
+                const rating =
+                    document.createElement('div');
+
+
+                rating.className =
+                    'rating-display';
+
+
+                /*
+                 * Stars
+                 */
+
+                const stars =
+                    document.createElement('span');
+
+
+                stars.className =
+                    'rating-stars';
+
+
+                stars.textContent =
+                    createStars(
+                        item.communityRating
+                    );
+
+
+                /*
+                 * Numeric rating
+                 */
+
+                const number =
+                    document.createElement('span');
+
+
+                number.className =
+                    'rating-number';
+
+
+                const value =
+                    getRatingValue(
+                        item.communityRating
+                    );
+
+
+                number.textContent =
+                    value === null
+                        ? 'No Rating'
+                        : `${value.toFixed(3)}/10`;
+
+
+                /*
+                 * Assemble rating.
+                 */
+
+                rating.appendChild(stars);
+
+                rating.appendChild(number);
+
+
+                /*
+                 * Assemble details.
+                 */
+
+                details.appendChild(title);
+
+                details.appendChild(metadata);
+
+                details.appendChild(rating);
+
+
+                /*
+                 * Assemble card.
+                 */
+
+                card.appendChild(poster);
+
+                card.appendChild(details);
+
+
+                container.appendChild(card);
+
+            });
+
+        }
+
+
+        /*
+         * Update the summary statistics.
+         */
+
+        function updateCommunitySummary(data) {
+
+            const rated =
+                data
+
+                    .map(
+                        item =>
+                            getRatingValue(
+                                item.communityRating
+                            )
+                    )
+
+                    .filter(
+                        value =>
+                            value !== null
+                    );
+
+
+            const average =
+                rated.length
+
+                    ? rated.reduce(
+                        (sum, value) =>
+                            sum + value,
+                        0
+                    ) / rated.length
+
+                    : null;
+
+
+            const highest =
+                rated.length
+
+                    ? Math.max(...rated)
+
+                    : null;
+
+
+            /*
+             * Average
+             */
+
+            document
+                .getElementById(
+                    'community-average-rating'
+                )
+                .textContent =
+                    average === null
+                        ? '—'
+                        : `${average.toFixed(3)}/10`;
+
+
+            /*
+             * Number rated
+             */
+
+            document
+                .getElementById(
+                    'community-rated-count'
+                )
+                .textContent =
+                    rated.length;
+
+
+            /*
+             * Highest rating
+             */
+
+            document
+                .getElementById(
+                    'community-highest-rating'
+                )
+                .textContent =
+                    highest === null
+                        ? '—'
+                        : `${highest.toFixed(3)}/10`;
+
+        }
+
+
+        /*
+         * Convert chronological values into
+         * something sortable.
+         */
+
+        function chronologicalValue(value) {
+
+            if (!value) {
+                return Number.MAX_SAFE_INTEGER;
+            }
+
+
+            const text =
+                String(value);
+
+
+            /*
+             * Extract the first four-digit year.
+             *
+             * Examples:
+             * "2004" -> 2004
+             * "Early 2000s" -> 2000
+             * "1970s" -> 1970
+             */
+
+            const match =
+                text.match(
+                    /\b(1[0-9]{3}|2[0-9]{3})\b/
+                );
+
+
+            if (match) {
+                return Number(match[1]);
+            }
+
+
+            const decadeMatch =
+                text.match(
+                    /\b(1[0-9]{3}|2[0-9]{3})s\b/
+                );
+
+
+            if (decadeMatch) {
+                return Number(
+                    decadeMatch[1]
+                );
+            }
+
+
+            return Number.MAX_SAFE_INTEGER;
+
+        }
+
+
+        /*
+         * Apply search, type filtering and sorting.
+         */
+
+        function applyCommunityFilters() {
+
+            const searchInput =
+                document.getElementById(
+                    'community-search'
+                );
+
+
+            const typeFilter =
+                document.getElementById(
+                    'community-type-filter'
+                );
+
+
+            const sortSelect =
+                document.getElementById(
+                    'community-sort'
+                );
+
+
+            const searchTerm =
+                searchInput.value
+                    .toLowerCase()
+                    .trim();
+
+
+            const selectedType =
+                typeFilter.value;
+
+
+            const selectedSort =
+                sortSelect.value;
+
+
+            /*
+             * Filter.
+             */
+
+            let filteredData =
+                communityRatingsData.filter(
+                    item => {
+
+                        const matchesSearch =
+                            item.title
+                                .toLowerCase()
+                                .includes(
+                                    searchTerm
+                                );
+
+
+                        const itemType =
+                            Array.isArray(item.type)
+                                ? item.type
+                                : [item.type];
+
+
+                        const matchesType =
+                            selectedType === 'all'
+                                ? true
+                                : itemType.includes(
+                                    selectedType
+                                );
+
+
+                        return (
+                            matchesSearch &&
+                            matchesType
+                        );
+
+                    }
+                );
+
+
+            /*
+             * Sort.
+             */
+
+            filteredData.sort(
+                (a, b) => {
+
+                    const ratingA =
+                        getRatingValue(
+                            a.communityRating
+                        );
+
+
+                    const ratingB =
+                        getRatingValue(
+                            b.communityRating
+                        );
+
+
+                    /*
+                     * Highest
+                     */
+
+                    if (
+                        selectedSort ===
+                        'highest'
+                    ) {
+
+                        return (
+                            (ratingB ?? -1) -
+                            (ratingA ?? -1)
+                        );
+
+                    }
+
+
+                    /*
+                     * Lowest
+                     */
+
+                    if (
+                        selectedSort ===
+                        'lowest'
+                    ) {
+
+                        return (
+                            (ratingA ?? 999) -
+                            (ratingB ?? 999)
+                        );
+
+                    }
+
+
+                    /*
+                     * Chronological
+                     */
+
+                    if (
+                        selectedSort ===
+                        'chronological'
+                    ) {
+
+                        return (
+                            chronologicalValue(
+                                a.chronologicalYear
+                            ) -
+                            chronologicalValue(
+                                b.chronologicalYear
+                            )
+                        );
+
+                    }
+
+
+                    /*
+                     * Release Date
+                     */
+
+                    if (
+                        selectedSort ===
+                        'release'
+                    ) {
+
+                        const dateA =
+                            Date.parse(
+                                a.releaseYear
+                            );
+
+
+                        const dateB =
+                            Date.parse(
+                                b.releaseYear
+                            );
+
+
+                        const safeA =
+                            Number.isNaN(dateA)
+                                ? Number.MAX_SAFE_INTEGER
+                                : dateA;
+
+
+                        const safeB =
+                            Number.isNaN(dateB)
+                                ? Number.MAX_SAFE_INTEGER
+                                : dateB;
+
+
+                        return safeA - safeB;
+
+                    }
+
+
+                    /*
+                     * Title A-Z
+                     */
+
+                    if (
+                        selectedSort ===
+                        'az'
+                    ) {
+
+                        return a.title.localeCompare(
+                            b.title
+                        );
+
+                    }
+
+
+                    /*
+                     * Title Z-A
+                     */
+
+                    if (
+                        selectedSort ===
+                        'za'
+                    ) {
+
+                        return b.title.localeCompare(
+                            a.title
+                        );
+
+                    }
+
+
+                    return 0;
+
+                }
             );
 
-        });
 
-}
+            renderCommunityRatings(
+                filteredData
+            );
 
-
-document
-    .getElementById('community-search')
-    .addEventListener(
-        'input',
-        applyCommunityFilters
-    );
+        }
 
 
-document
-    .getElementById('community-type-filter')
-    .addEventListener(
-        'change',
-        applyCommunityFilters
-    );
+        /*
+         * Load BOTH datasets and combine them.
+         */
+
+        function loadCommunityRatings() {
+
+            Promise.all([
+
+                fetch(
+                    'community-ratings.json'
+                ),
+
+                fetch(
+                    'timeline.json'
+                )
+
+            ])
+
+                .then(responses => {
+
+                    responses.forEach(
+                        response => {
+
+                            if (!response.ok) {
+
+                                throw new Error(
+                                    `Failed to load ${response.url}`
+                                );
+
+                            }
+
+                        }
+                    );
 
 
-document
-    .getElementById('community-sort')
-    .addEventListener(
-        'change',
-        applyCommunityFilters
-    );
+                    return Promise.all(
+                        responses.map(
+                            response =>
+                                response.json()
+                        )
+                    );
+
+                })
 
 
-loadCommunityRatings();
+                .then(
+                    ([communityData, timelineData]) => {
 
-</script>
+                        /*
+                         * Match each community rating
+                         * with its corresponding timeline
+                         * entry.
+                         */
+
+                        communityRatingsData =
+                            communityData.map(
+                                communityItem => {
+
+                                    const timelineItem =
+                                        findTimelineItem(
+                                            communityItem,
+                                            timelineData
+                                        );
+
+
+                                    /*
+                                     * If a match exists,
+                                     * merge the timeline
+                                     * information into the
+                                     * community rating.
+                                     */
+
+                                    if (
+                                        timelineItem
+                                    ) {
+
+                                        return {
+
+                                            ...communityItem,
+
+                                            poster:
+                                                timelineItem.poster,
+
+                                            type:
+                                                timelineItem.type,
+
+                                            universe:
+                                                timelineItem.universe,
+
+                                            earth:
+                                                timelineItem.earth,
+
+                                            chronologicalYear:
+                                                timelineItem.chronologicalYear,
+
+                                            releaseYear:
+                                                timelineItem.releaseYear
+
+                                        };
+
+                                    }
+
+
+                                    /*
+                                     * Keep the community
+                                     * entry even if no
+                                     * timeline match exists.
+                                     */
+
+                                    console.warn(
+                                        'No timeline match for:',
+                                        communityItem.title
+                                    );
+
+
+                                    return communityItem;
+
+                                }
+                            );
+
+
+                        /*
+                         * Update page.
+                         */
+
+                        updateCommunitySummary(
+                            communityRatingsData
+                        );
+
+
+                        applyCommunityFilters();
+
+                    }
+                )
+
+
+                .catch(error => {
+
+                    console.error(
+                        'Community ratings loading failed:',
+                        error
+                    );
+
+
+                    const container =
+                        document.getElementById(
+                            'community-ratings-content'
+                        );
+
+
+                    container.innerHTML = '';
+
+
+                    const errorMessage =
+                        document.createElement('p');
+
+
+                    errorMessage.className =
+                        'ratings-empty';
+
+
+                    errorMessage.textContent =
+                        'Unable to load community ratings.';
+
+
+                    container.appendChild(
+                        errorMessage
+                    );
+
+                });
+
+        }
+
+
+        /*
+         * Search listener.
+         */
+
+        document
+            .getElementById(
+                'community-search'
+            )
+            .addEventListener(
+                'input',
+                applyCommunityFilters
+            );
+
+
+        /*
+         * Type filter listener.
+         */
+
+        document
+            .getElementById(
+                'community-type-filter'
+            )
+            .addEventListener(
+                'change',
+                applyCommunityFilters
+            );
+
+
+        /*
+         * Sort listener.
+         */
+
+        document
+            .getElementById(
+                'community-sort'
+            )
+            .addEventListener(
+                'change',
+                applyCommunityFilters
+            );
+
+
+        /*
+         * Start loading.
+         */
+
+        loadCommunityRatings();
+
+    </script>
 
 </body>
+
 </html>
