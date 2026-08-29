@@ -908,6 +908,22 @@ img {
     display: none;
 }
 
+
+/* TMDB attribution logo */
+
+.tmdb-credit {
+    display: inline-block;
+    margin-top: 18px;
+}
+
+.tmdb-credit img {
+    display: block;
+    width: 150px;
+    height: auto;
+    margin: 0 auto;
+}
+
+
 /* Tablet */
 @media (max-width: 900px) {
     main {
