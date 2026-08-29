@@ -1281,4 +1281,10 @@ a:focus-visible {
         letter-spacing: 1px;
     }
 
+    /* TMDB attribution */
+
+    .tmdb-credit img {
+        width: 110px;
+    }
+
 }
