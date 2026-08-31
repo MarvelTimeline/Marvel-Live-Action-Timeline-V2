@@ -268,23 +268,48 @@
                 0 0 8px rgba(155, 77, 255, 0.65);
         }
 
-        .snake-row:nth-child(even)::after {
-            right: 0;
+        /* Connecting vertical line between rows */
 
-            border-left: 0;
-            border-right: 3px solid #9b4dff;
+.snake-row::after {
+    content: "";
 
-            border-radius: 0 55px 55px 0;
-        }
+    position: absolute;
 
-        .snake-row:nth-child(odd)::after {
-            left: 0;
+    width: 55px;
+    height: 115px;
 
-            border-right: 0;
-            border-left: 3px solid #9b4dff;
+    top: 175px;
 
-            border-radius: 55px 0 0 55px;
-        }
+    border-top: 3px solid #9b4dff;
+    border-bottom: 3px solid #9b4dff;
+
+    box-shadow:
+        0 0 8px rgba(155, 77, 255, 0.65);
+}
+
+
+/* Odd rows: line exits on the RIGHT */
+
+.snake-row:nth-child(odd)::after {
+    right: 0;
+
+    border-left: 0;
+    border-right: 3px solid #9b4dff;
+
+    border-radius: 0 55px 55px 0;
+}
+
+
+/* Even rows: line exits on the LEFT */
+
+.snake-row:nth-child(even)::after {
+    left: 0;
+
+    border-right: 0;
+    border-left: 3px solid #9b4dff;
+
+    border-radius: 55px 0 0 55px;
+}
 
 
         /* ---------------- CARDS ---------------- */
