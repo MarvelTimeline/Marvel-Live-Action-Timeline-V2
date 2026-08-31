@@ -1403,20 +1403,34 @@
 
 
                 rowItems.forEach(
-                    (item, index) => {
+    (item, index) => {
 
-                        const position =
-                            i + index;
+        let position;
 
-                        row.appendChild(
-                            createSnakeItem(
-                                item,
-                                position
-                            )
-                        );
+        if (
+            window.innerWidth > 700 &&
+            rowNumber % 2 === 1
+        ) {
 
-                    }
-                );
+            position =
+                i + (rowItems.length - 1 - index);
+
+        } else {
+
+            position =
+                i + index;
+
+        }
+
+        row.appendChild(
+            createSnakeItem(
+                item,
+                position
+            )
+        );
+
+    }
+);
 
 
                 if (rowNumber === 0) {
