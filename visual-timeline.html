@@ -1235,17 +1235,10 @@
                 position + 1;
 
 
-            /* Poster link */
+            /* Poster */
 
-            const posterLink =
-                document.createElement("a");
-
-            posterLink.href =
-                "full-timeline.html";
-
-
-            const poster =
-                document.createElement("img");
+const poster =
+    document.createElement("img");
 
             poster.className =
                 "snake-poster";
@@ -1260,11 +1253,6 @@
                 position < 12
                     ? "eager"
                     : "lazy";
-
-
-            posterLink.appendChild(
-                poster
-            );
 
 
             /* Details */
@@ -1325,7 +1313,7 @@
             );
 
             article.appendChild(
-                posterLink
+                poster
             );
 
             article.appendChild(
